@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { IoIosArrowBack, IoIosArrowForward  } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 
 const testimonials = [
   {
@@ -20,36 +20,59 @@ const testimonials = [
     author: "Ky N.",
   },
   {
-    quote: "I was skeptical, but now I'm smiling every day.",
-    author: "Anna S.",
+    quote: "What a great deal for superior service.¹",
+    author: "Lisa D.",
   },
   {
-    quote: "Quick, affordable, and amazing results!",
-    author: "David P.",
+    quote: "Having a professional orthodontist as part of the treatment program gave me the peace of mind I needed. I chose OrthoFX over other brands because of this key differentiator!¹",
+    author: "Tony W.",
   },
   {
-    quote: "Highly recommend to anyone considering aligners.",
-    author: "Samantha L.",
+    quote: "We wholeheartedly loved AirFlex for our son. The results have truly exceeded our expectations! The alignment process was swift, and within a short period, we began to see dramatic improvements. Compared to traditional braces and Invisalign treatments our other two children underwent, OrthoFX’s AirFlex provided superior results in a much faster timeline.¹",
+    author: "Omero M.",
   },
 ];
 
+const variants = {
+  enter: (direction) => ({
+    opacity: 0,
+    x: direction > 0 ? 50 : -50,
+    scale: 0.95,
+  }),
+  center: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+  exit: (direction) => ({
+    opacity: 0,
+    x: direction > 0 ? -50 : 50,
+    scale: 0.95,
+    transition: { duration: 0.4, ease: "easeIn" },
+  }),
+};
+
 const TestimonialSlider = () => {
-  const [index, setIndex] = useState(0);
+  const [[index, direction], setIndex] = useState([0, 0]);
 
   const handleNext = () => {
-    setIndex((prev) => (prev + 1) % testimonials.length);
+    setIndex(([prev]) => [(prev + 1) % testimonials.length, 1]);
   };
 
   const handlePrev = () => {
-    setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setIndex(([prev]) => [(prev - 1 + testimonials.length) % testimonials.length, -1]);
   };
 
   const { quote, author } = testimonials[index];
 
   return (
     <section className="bg-[#121418] text-white py-16 px-4 md:px-[32px] flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-0">
-      <div className="">
-                    <h1 className='text-[#d9edf7] flex items-center gap-2 italic text-[20px]'><div className='bg-white md:w-20 w-8 h-[1px] rounded-4xl'></div> Customer testimonials</h1>
+      {/* Left Title */}
+      <div>
+        <h1 className="text-[#d9edf7] flex items-center gap-2 italic text-[20px]">
+          <div className="bg-white md:w-20 w-8 h-[1px] rounded-4xl"></div> Customer testimonials
+        </h1>
         <h2 className="text-[20px] md:text-[40px] text-left">
           Real people <br /> real results
         </h2>
@@ -58,30 +81,39 @@ const TestimonialSlider = () => {
       {/* Slider */}
       <div className="max-w-3xl mx-auto flex flex-col items-center gap-6 relative">
         <div className="flex items-center gap-6">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1, backgroundColor: "#fff", color: "#000" }}
+            whileTap={{ scale: 0.9 }}
             onClick={handlePrev}
-            className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:text-black transition hover:cursor-pointer"
+            className="w-10 h-10 rounded-full border border-white flex items-center justify-center transition hover:cursor-pointer"
           >
             <IoIosArrowBack size={20} />
-          </button>
-          <span className="text-white/80 text-lg">{index + 1} / {testimonials.length}</span>
-          <button
+          </motion.button>
+
+          <span className="text-white/80 text-lg">
+            {index + 1} / {testimonials.length}
+          </span>
+
+          <motion.button
+            whileHover={{ scale: 1.1, backgroundColor: "#fff", color: "#000" }}
+            whileTap={{ scale: 0.9 }}
             onClick={handleNext}
-            className="w-10 h-10 rounded-full border border-white flex items-center justify-center hover:text-black transition hover:cursor-pointer"
+            className="w-10 h-10 rounded-full border border-white flex items-center justify-center transition hover:cursor-pointer"
           >
             <IoIosArrowForward size={20} />
-          </button>
+          </motion.button>
         </div>
 
         {/* Animated Quote */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence custom={direction} mode="wait">
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4 }}
-            className="text-xl md:text-2xl italic max-w-2xl text-white mt-4"
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className="text-xl md:text-2xl italic max-w-2xl text-white mt-4 text-center"
           >
             “{quote}”
             <p className="mt-4 text-white/60 text-base italic">{author}</p>
