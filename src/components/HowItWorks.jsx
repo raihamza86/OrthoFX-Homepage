@@ -1,31 +1,16 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Button from "./Button";
 
 const steps = [
-  {
-    step: "Step 01",
-    title: "Schedule a consultation",
-    description: "Meet your doctor for a 3D scan and preview of your new smile.",
-  },
-  {
-    step: "Step 02",
-    title: "See your smile transform",
-    description: "Start your journey with customized aligners and expert guidance from your doctor.",
-  },
-  {
-    step: "Step 03",
-    title: "Retain your smile",
-    description: "Keep your smile straight with our personalized aligners.",
-  },
+  { step: "Step 01", title: "Schedule a consultation", description: "Meet your doctor for a 3D scan and preview of your new smile." },
+  { step: "Step 02", title: "See your smile transform", description: "Start your journey with customized aligners and expert guidance from your doctor." },
+  { step: "Step 03", title: "Retain your smile", description: "Keep your smile straight with our personalized aligners." },
 ];
 
 const containerVariants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.25, delayChildren: 0.2 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.25, delayChildren: 0.2 } },
 };
 
 const cardVariants = {
@@ -34,6 +19,56 @@ const cardVariants = {
 };
 
 const HowItWorks = () => {
+  const scrollRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect screen size
+  useEffect(() => {
+    const checkScreen = () => setIsMobile(window.innerWidth < 768);
+    checkScreen();
+    window.addEventListener("resize", checkScreen);
+    return () => window.removeEventListener("resize", checkScreen);
+  }, []);
+
+useEffect(() => {
+  const el = scrollRef.current;
+
+  const handleWheel = (e) => {
+    const rect = el.getBoundingClientRect();
+    const inView =
+      rect.top < window.innerHeight && rect.bottom > 0; // section is visible
+
+    if (!inView) return; // allow normal scrolling outside the section
+
+    if (isMobile) {
+      // Horizontal hijack
+      if (
+        (e.deltaY > 0 && el.scrollLeft + el.clientWidth < el.scrollWidth) ||
+        (e.deltaY < 0 && el.scrollLeft > 0)
+      ) {
+        e.preventDefault();
+        el.scrollLeft += e.deltaY;
+      }
+    } else {
+      // Vertical hijack
+      if (
+        (e.deltaY > 0 && el.scrollTop + el.clientHeight < el.scrollHeight) ||
+        (e.deltaY < 0 && el.scrollTop > 0)
+      ) {
+        e.preventDefault();
+        el.scrollTop += e.deltaY;
+      }
+    }
+  };
+
+  // Listen globally
+  window.addEventListener("wheel", handleWheel, { passive: false });
+  return () => {
+    window.removeEventListener("wheel", handleWheel);
+  };
+}, [isMobile]);
+
+
   return (
     <section className="h-[110vh] md:h-screen w-full bg-[url('/howitworks-bg.png')] bg-cover bg-no-repeat bg-center relative overflow-hidden rounded-[2rem]">
       
@@ -45,13 +80,13 @@ const HowItWorks = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        <h1 className='text-white flex items-center gap-2 italic text-[20px]'>
-          <div className='bg-white md:w-20 w-8 h-[1px] rounded-4xl'></div> How it works
+        <h1 className="text-white flex items-center gap-2 italic text-[20px]">
+          <div className="bg-white md:w-20 w-8 h-[1px] rounded-4xl"></div> How it works
         </h1>
         <h2 className="text-[20px] md:text-[45px] mb-4">
           3 easy steps <span className="italic font-light">to a confident smile</span>
         </h2>
-        <Button text='Find a doctor' />
+        <Button text="Find a doctor" />
       </motion.div>
 
       {/* Cards Scroll Section */}
@@ -63,8 +98,13 @@ const HowItWorks = () => {
         viewport={{ once: true, amount: 0.2 }}
       >
         <div
-          className="scroll-hide h-full flex md:flex-col flex-row overflow-auto py-12 md:py-24 px-6 md:px-10 gap-6 md:items-end items-end md:pr-16 snap-y md:snap-mandatory snap-x"
-          style={{ scrollSnapType: "y mandatory" }}
+          ref={scrollRef}
+          className={`scroll-hide h-full flex ${
+            isMobile ? "flex-row overflow-x-auto snap-x" : "flex-col overflow-y-auto snap-y"
+          } py-12 md:py-24 px-6 md:px-10 gap-6 md:items-end items-end md:pr-16 md:snap-mandatory`}
+          style={{
+            scrollSnapType: isMobile ? "x mandatory" : "y mandatory",
+          }}
         >
           {steps.map((step, index) => (
             <motion.div

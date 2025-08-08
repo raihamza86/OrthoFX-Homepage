@@ -173,32 +173,32 @@ const Navbar = () => {
 <AnimatePresence>
   {mobileMenuOpen && (
     <motion.div
-      className="xl:hidden fixed top-0 left-0 w-full h-screen bg-[#15161a] shadow-md z-50 flex flex-col"
+className="xl:hidden fixed top-0 left-0 w-full h-screen bg-[#15161a] shadow-md z-50 flex flex-col"
       initial={{ y: "-100%", opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: "-100%", opacity: 0 }}
       transition={{ duration: 0.8, ease: "easeInOut" }}
     >
       {/* Close Button */}
-      <div className="w-full flex justify-end">
-        <button
-          onClick={() => setMobileMenuOpen(false)}
-          className="text-white flex items-center hover:cursor-pointer py-4 px-12 gap-2"
-        >
-          <FiX size={20} /> <p className="text-[#d9edf7]">Close</p>
-        </button>
-      </div>
+  <div className="flex-shrink-0 w-full flex justify-end">
+    <button
+      onClick={() => setMobileMenuOpen(false)}
+      className="text-white flex items-center hover:cursor-pointer py-4 px-12 gap-2"
+    >
+      <FiX size={20} /> <p className="text-[#d9edf7]">Close</p>
+    </button>
+  </div>
 
       {/* Scrollable Menu Items */}
-      <div className="flex-1 overflow-y-auto scroll-hide flex flex-col p-4 gap-2">
-        {navItems.map((item) => (
-          <button
-            key={item.label}
-            className="text-[#d9edf7] text-left text-[18px] hover:cursor-pointer"
-          >
-            {item.label}
-          </button>
-        ))}
+  <div className="flex-1 flex flex-col overflow-y-auto scroll-hide px-4 pb-4 space-y-2">
+    {navItems.map((item) => (
+      <button
+        key={item.label}
+        className="text-[#d9edf7] text-left text-[18px] hover:cursor-pointer"
+      >
+        {item.label}
+      </button>
+    ))}
 
         {/* Products */}
         <button className="text-[#c8d7de] text-left text-[18px] hover:cursor-pointer">
@@ -229,18 +229,18 @@ const Navbar = () => {
       </div>
 
       {/* Bottom Buttons */}
-      <div className="w-full flex items-center justify-between bg-[#38393c] md:py-[12px] px-2 md:px-8 py-2">
-        <button className="bg-[#292930] text-[14px] text-nowrap md:text-[18px] text-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300 ease-in-out hover:cursor-pointer">
-          Become a provider
-        </button>
-        <button className="group relative overflow-hidden px-4 py-2 rounded-full bg-[#f0f0f0] text-black text-[14px] md:text-[18px] flex items-center gap-2 text-nowrap transition-all duration-300 hover:cursor-pointer">
-          <span className="absolute inset-0 bg-[#c8d7de] w-0 group-hover:w-full transition-all duration-500 ease-in-out right-0 z-0"></span>
-          <span className="relative z-10 flex items-center gap-2 transition-colors duration-300 group-hover:text-black">
-            Find a doctor
-            <FaArrowRightLong />
-          </span>
-        </button>
-      </div>
+  <div className="flex-shrink-0 w-full flex items-center justify-between bg-[#38393c] md:py-[12px] px-2 md:px-8 py-2">
+    <button className="bg-[#292930] text-[14px] md:text-[18px] text-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition-all duration-300">
+      Become a provider
+    </button>
+    <button className="group relative overflow-hidden px-4 py-2 rounded-full bg-[#f0f0f0] text-black text-[14px] md:text-[18px] flex items-center gap-2 transition-all duration-300">
+      <span className="absolute inset-0 bg-[#c8d7de] w-0 group-hover:w-full transition-all duration-500 right-0 z-0"></span>
+      <span className="relative z-10 flex items-center gap-2 group-hover:text-black">
+        Find a doctor
+        <FaArrowRightLong />
+      </span>
+    </button>
+  </div>
     </motion.div>
   )}
 </AnimatePresence>

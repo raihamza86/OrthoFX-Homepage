@@ -8,37 +8,37 @@ const testimonials = [
     quote:
       "Gamechanger! The most exciting thing about OrthoFX is the exceptional aligner materials and financing options, all put together in an integrated system.²",
     name: "Dr. Conroy",
-    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    image: "/d-1.png",
   },
   {
     quote:
       "OrthoFX aligners reduce refinements and treatment time, making my patients happy with faster results! ²",
     name: "Dr. Lowe",
-    image: "https://randomuser.me/api/portraits/men/44.jpg",
+    image: "/d-2.jpg",
   },
   {
     quote:
       "The greatest impact OrthoFX has had in my practice is the flexibility of offering diverse and affordable payment options for my patients.²",
     name: "Dr. Battle",
-    image: "https://randomuser.me/api/portraits/men/52.jpg",
+    image: "/d-3.png",
   },
   {
     quote:
       "OrthoFX has been a fantastic addition to our practice, delivering terrific results for my patients.²",
     name: "Dr. Brilliant",
-    image: "https://randomuser.me/api/portraits/men/68.jpg",
+    image: "/d-4.png",
   },
   {
     quote:
       "I have seen OrthoFX patients have half the refinements, fewer aligner stages and better results than other brands.²",
     name: "Dr. Sellke",
-    image: "https://randomuser.me/api/portraits/men/52.jpg",
+    image: "/d-5.png",
   },
   {
     quote:
       "My favorite features about OrthoFX are the predictable outcomes and financing options which help patients start treatment with little upfront costs.²",
     name: "Dr. Block",
-    image: "https://randomuser.me/api/portraits/men/68.jpg",
+    image: "/d-6.png",
   },
 ];
 
