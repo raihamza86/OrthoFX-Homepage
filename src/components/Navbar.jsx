@@ -190,7 +190,7 @@ className="xl:hidden fixed top-0 left-0 w-full h-screen bg-[#15161a] shadow-md z
   </div>
 
       {/* Scrollable Menu Items */}
-  <div className="flex-1 flex flex-col overflow-y-auto scroll-hide px-4 pb-4 space-y-2">
+  <div className="flex-1 overflow-y-auto scroll-hide px-4 pb-4 space-y-2">
     {navItems.map((item) => (
       <button
         key={item.label}
