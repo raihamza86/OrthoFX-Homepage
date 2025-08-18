@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 
 function App() {
   return (
-    <div className="font-sans bg-[#15161a]">
+    <div className="font-grotesk bg-[#15161a]">
       <Navbar />
       <Hero />
       <Trusted />

@@ -41,7 +41,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black/20 rounded-b-[3rem] z-0" />
 
         {/* Content */}
-        <div className="relative z-10 h-screen flex flex-col justify-between">
+        <div className="relative z-10 h-[150vh] md:h-[120vh] flex flex-col justify-between">
           <motion.h1
             className="md:text-[70px] text-[40px] text-[#15161a]"
             variants={fadeUp}
@@ -50,7 +50,7 @@ const Hero = () => {
           </motion.h1>
 
           <motion.div
-            className="flex gap-4 justify-end"
+            className="flex gap-4 justify-end xl:mb-[1rem] 2xl:mr-[30rem] 2xl:mb-[10rem]"
             variants={fadeUp}
           >
             <motion.img

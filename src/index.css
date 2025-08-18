@@ -9,3 +9,7 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
 }
+
+.font-grotesk {
+  font-family: "Neue Haas Grotesk Display", sans-serif;
+}

@@ -21,7 +21,7 @@ const fadeUp = {
 const WhyDifferent = () => {
   return (
     <motion.div
-      className="my-4"
+      className="my-4 xl:block 2xl:hidden"
       variants={containerVariants}
       initial="hidden"
       whileInView="show"
@@ -47,7 +47,7 @@ const WhyDifferent = () => {
           Our aligners apply optimal force with a gentle, consistent touch. While traditional aligners may use up to 8.4x more force, ours deliver precise control for a more comfortable experience.**
         </p>
         <motion.img
-          className="rounded-2xl md:w-[80%]"
+          className="rounded-2xl md:w-[50%]"
           src="/trusted-3.jpg"
           alt="not found"
           variants={fadeUp}
@@ -69,7 +69,7 @@ const WhyDifferent = () => {
           <Button text="OrthoFX Difference" />
         </motion.div>
         <motion.img
-          className="rounded-2xl md:w-[80%]"
+          className="rounded-2xl md:w-[50%]"
           src="/trusted-4.jpg"
           alt="not found"
           variants={fadeUp}
