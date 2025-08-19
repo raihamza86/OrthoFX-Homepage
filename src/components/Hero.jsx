@@ -32,7 +32,7 @@ const Hero = () => {
       transition={{ duration: 0.8, ease: "easeInOut" }}
     >
       <motion.section
-        className="relative min-h-screen bg-no-repeat bg-cover bg-[center_top] md:bg-center py-20 px-6 lg:px-12 rounded-b-[3rem] bg-[url('/hero-bg.jpg')] md:bg-[url('/hero.jpg')]"
+        className="relative min-h-screen xl:h-[120vh] 2xl:h-[100vh] bg-no-repeat bg-cover bg-[center_top] md:bg-center py-20 px-6 lg:px-12 rounded-b-[3rem] bg-[url('/hero-bg.jpg')] md:bg-[url('/hero.jpg')]"
         variants={containerVariants}
         initial="hidden"
         animate="show"
@@ -46,11 +46,11 @@ const Hero = () => {
             className="md:text-[70px] text-[40px] text-[#15161a]"
             variants={fadeUp}
           >
-            Be you. <br /> <span className="italic">Smile confidently.</span>
+            Be you. <br /> <span className="libre-baskerville-regular-italic">Smile confidently.</span>
           </motion.h1>
 
           <motion.div
-            className="flex gap-4 justify-end xl:mb-[1rem] 2xl:mr-[30rem] 2xl:mb-[10rem]"
+            className="flex gap-4 justify-end xl:mb-[10rem] 2xl:mr-[30rem] 2xl:mb-[20rem]"
             variants={fadeUp}
           >
             <motion.img
@@ -65,7 +65,7 @@ const Hero = () => {
               variants={fadeUp}
               transition={{ delay: 0.4 }}
             >
-              <p className="text-[18px] text-white leading-relaxed">
+              <p className="text-[18px] text-white leading-relaxed font-xxthin">
                 With AirFlex™ aligners, enjoy up to 50% less wear time <br />
                 compared to other brands. OrthoFX's cutting-edge <br />
                 aligners are designed to fit your unique lifestyle and <br />

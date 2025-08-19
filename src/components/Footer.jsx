@@ -41,9 +41,10 @@ const linkVariants = {
 
 const Footer = () => (
   <footer className="bg-[#121418] text-white overflow-hidden">
+    <div className="2xl:px-[10rem] px-0">
     {/* Divider */}
     <motion.div
-      className="border-t border-[#c8d7de] mb-8"
+      className="border-t border-[#c8d7de] mb-8 2xl:px-[10rem]"
       initial={{ scaleX: 0 }}
       whileInView={{ scaleX: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -60,7 +61,7 @@ const Footer = () => (
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <h3 className="text-lg mb-4 text-[#d9edf7] text-[20px] italic">
+        <h3 className="libre-baskerville-regular-italic text-lg mb-4 text-[#d9edf7] text-[20px]">
           Company
         </h3>
         <ul className="space-y-2 text-sm">
@@ -77,7 +78,7 @@ const Footer = () => (
             >
               <a
                 href="#"
-                className="hover:cursor-pointer text-[#d9edf7] text-[16px]"
+                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px]"
               >
                 {link}
               </a>
@@ -94,7 +95,7 @@ const Footer = () => (
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <h3 className="text-lg mb-4 text-[#d9edf7] text-[20px] italic">
+        <h3 className="text-lg mb-4 text-[#d9edf7] text-[20px] libre-baskerville-regular-italic">
           Products
         </h3>
         <ul className="space-y-2 text-sm">
@@ -111,7 +112,7 @@ const Footer = () => (
             >
               <a
                 href="#"
-                className="hover:cursor-pointer text-[#d9edf7] text-[16px]"
+                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px]"
               >
                 {link}
               </a>
@@ -127,8 +128,9 @@ const Footer = () => (
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
+        className="mt-[-9rem] md:mt-[-10rem] lg:mt-0"
       >
-        <h3 className="text-lg mb-4 text-[#d9edf7] text-[20px] italic">
+        <h3 className="font-xxthin text-lg mb-4 text-[#d9edf7] text-[20px] libre-baskerville-regular-italic">
           Resources
         </h3>
         <ul className="space-y-2 text-sm">
@@ -145,7 +147,7 @@ const Footer = () => (
             >
               <a
                 href="#"
-                className="hover:cursor-pointer text-[#d9edf7] text-[16px]"
+                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px]"
               >
                 {link}
               </a>
@@ -154,16 +156,17 @@ const Footer = () => (
         </ul>
       </motion.div>
     </div>
+    </div>
 
-    {/* Contact & Legal */}
+    {/* Last Image */}
     <motion.div
-      className="mt-8"
+      className="mt-8 2xl:mt-16"
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
       viewport={{ once: true }}
     >
-      <img src="/footer.png" alt="not found" />
+      <img className="2xl:w-full" src="/footer.png" alt="not found" />
     </motion.div>
   </footer>
 );

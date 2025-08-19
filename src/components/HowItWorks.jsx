@@ -19,6 +19,7 @@ const cardVariants = {
 };
 
 const HowItWorks = () => {
+  const sectionRef = useRef(null);
   const scrollRef = useRef(null);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -30,68 +31,90 @@ const HowItWorks = () => {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-useEffect(() => {
-  const el = scrollRef.current;
+  useEffect(() => {
+    const el = scrollRef.current;
+    const section = sectionRef.current;
+    if (!el || !section) return;
 
-  const handleWheel = (e) => {
-    const rect = el.getBoundingClientRect();
-    const inView =
-      rect.top < window.innerHeight && rect.bottom > 0; // section is visible
+    const handleWheel = (e) => {
+      const rect = section.getBoundingClientRect();
+      const fullyInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
 
-    if (!inView) return; // allow normal scrolling outside the section
+      if (!fullyInView) return; // only hijack when section is fully visible
 
-    if (isMobile) {
-      // Horizontal hijack
-      if (
-        (e.deltaY > 0 && el.scrollLeft + el.clientWidth < el.scrollWidth) ||
-        (e.deltaY < 0 && el.scrollLeft > 0)
-      ) {
-        e.preventDefault();
-        el.scrollLeft += e.deltaY;
+      if (isMobile) {
+        // Horizontal hijack
+        if (
+          (e.deltaY > 0 && el.scrollLeft + el.clientWidth < el.scrollWidth) ||
+          (e.deltaY < 0 && el.scrollLeft > 0)
+        ) {
+          e.preventDefault();
+          el.scrollLeft += e.deltaY;
+        }
+      } else {
+        // Vertical hijack
+        if (
+          (e.deltaY > 0 && el.scrollTop + el.clientHeight < el.scrollHeight) ||
+          (e.deltaY < 0 && el.scrollTop > 0)
+        ) {
+          e.preventDefault();
+          el.scrollTop += e.deltaY;
+        }
       }
-    } else {
-      // Vertical hijack
-      if (
-        (e.deltaY > 0 && el.scrollTop + el.clientHeight < el.scrollHeight) ||
-        (e.deltaY < 0 && el.scrollTop > 0)
-      ) {
+    };
+
+    const handleKey = (e) => {
+      const rect = section.getBoundingClientRect();
+      const fullyInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+      if (!fullyInView) return;
+
+      let step = isMobile ? el.clientWidth * 0.9 : el.clientHeight * 0.9;
+
+      if (["ArrowDown", "PageDown", " "].includes(e.key)) {
         e.preventDefault();
-        el.scrollTop += e.deltaY;
+        isMobile ? (el.scrollLeft += step) : (el.scrollTop += step);
       }
-    }
-  };
+      if (["ArrowUp", "PageUp"].includes(e.key)) {
+        e.preventDefault();
+        isMobile ? (el.scrollLeft -= step) : (el.scrollTop -= step);
+      }
+    };
 
-  // Listen globally
-  window.addEventListener("wheel", handleWheel, { passive: false });
-  return () => {
-    window.removeEventListener("wheel", handleWheel);
-  };
-}, [isMobile]);
+    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("keydown", handleKey);
 
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("keydown", handleKey);
+    };
+  }, [isMobile]);
 
   return (
-    <section className="h-[110vh] md:h-screen w-full bg-[url('/howitworks-bg.png')] bg-cover bg-no-repeat bg-center relative overflow-hidden rounded-[2rem]">
-      
+    <section
+      ref={sectionRef}
+      className="h-[110vh] md:h-screen w-full bg-[url('/howitworks-bg.png')] bg-cover bg-no-repeat bg-center relative overflow-hidden rounded-[2rem]"
+    >
       {/* Left Text */}
       <motion.div
-        className="absolute top-6 md:top-1/2 md:-translate-y-1/2 left-6 md:left-16 z-10 text-white w-[200px] md:max-w-[400px] lg:min-w-[400px]"
+        className="absolute top-6 md:top-1/2 md:-translate-y-1/2 left-6 md:left-16 z-10 text-white w-[200px] md:max-w-[400px] lg:min-w-[400px] 2xl:left-[30rem] 2xl:bottom-[30rem]"
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        <h1 className="text-white flex items-center gap-2 italic text-[20px]">
+        <h1 className="text-white flex items-center gap-2 libre-baskerville-regular-italic text-[20px]">
           <div className="bg-white md:w-20 w-8 h-[1px] rounded-4xl"></div> How it works
         </h1>
-        <h2 className="text-[20px] md:text-[45px] mb-4">
-          3 easy steps <span className="italic font-light">to a confident smile</span>
+        <h2 className="text-[20px] font-xxthin md:text-[45px] 2xl:text-[50px] mb-4">
+          3 easy steps <span className="libre-baskerville-regular-italic font-light">to a confident smile</span>
         </h2>
         <Button text="Find a doctor" />
       </motion.div>
 
       {/* Cards Scroll Section */}
       <motion.div
-        className="absolute top-0 right-0 h-full w-full lg:w-[50%] flex justify-end z-10"
+        className="absolute top-0 right-0 h-full w-full lg:w-[50%] flex justify-end z-10  2xl:right-[40rem]"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -112,9 +135,9 @@ useEffect(() => {
               className="bg-[#c8d7de] min-w-[65vw] min-h-[65vw] md:max-w-[400px] md:min-w-[400px] md:min-h-[400px] p-2 md:p-8 rounded-3xl shadow-md flex flex-col md:gap-2 justify-center"
               variants={cardVariants}
             >
-              <p className="italic text-[#15161a] text-[18px] md:text-[20px]">{step.step}</p>
-              <h3 className="text-[#15161a] text-[18px] md:text-[32px]">{step.title}</h3>
-              <p className="mt-2 text-[#15161a] text-[14px] md:text-[18px]">{step.description}</p>
+              <p className="libre-baskerville-regular-italic text-[#15161a] text-[18px] md:text-[20px]">{step.step}</p>
+              <h3 className="text-[#15161a] text-[18px] md:text-[32px] font-xxthin">{step.title}</h3>
+              <p className="mt-2 text-[#15161a] text-[14px] md:text-[18px] ">{step.description}</p>
             </motion.div>
           ))}
         </div>

@@ -19,11 +19,11 @@ const Aligned = () => {
         variants={fadeUp}
       >
         <motion.h2 
-          className="font-bold leading-tight text-white text-4xl sm:text-5xl lg:text-7xl xl:text-[96px]"
+          className="leading-[96px] font-xxthin text-[#d9edf7] text-4xl sm:text-5xl lg:text-7xl xl:text-[96px]"
           variants={fadeUp}
         >
           Aligned <br />
-          <span className="text-[#c8d7de]">to your lifestyle</span>
+          <span className="libre-baskerville-regular-italic">to your lifestyle</span>
         </motion.h2>
 
         <motion.div 

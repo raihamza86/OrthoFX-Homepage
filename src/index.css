@@ -2,14 +2,59 @@
 
 
 .scroll-hide::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .scroll-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .font-grotesk {
   font-family: "Neue Haas Grotesk Display", sans-serif;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Pro';
+  src: url('/fonts/NeueHaas/NeueHaasDisplayLight.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Pro';
+  src: url('/fonts/NeueHaas/NeueHaasDisplayBold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Neue Haas Grotesk Pro';
+  src: url('/fonts/NeueHaas/NeueHaasDisplayXXThin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+
+.font-xxthin {
+  font-family: 'Neue Haas Grotesk Pro', sans-serif;
+  font-weight: 400;
+}
+
+
+.libre-baskerville-regular {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.libre-baskerville-bold {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.libre-baskerville-regular-italic {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+  font-style: italic;
 }

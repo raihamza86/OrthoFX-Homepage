@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { motion } from "framer-motion";
 import Button from "./Button";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const testimonials = [
   {
@@ -42,40 +43,63 @@ const testimonials = [
   },
 ];
 
+// Repeat testimonials 6x for infinite scroll illusion
+const loopedTestimonials = [...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials, ...testimonials];
+
 const DoctorTestimonials = () => {
   const scrollRef = useRef();
 
-const scroll = (offset) => {
-  const container = scrollRef.current;
-  if (!container) return;
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (container) {
+      // Jump to the middle set on mount
+      const cardWidth = container.querySelector(".card")?.offsetWidth || 380;
+      container.scrollLeft = cardWidth * testimonials.length;
+    }
+  }, []);
 
-  const maxScrollLeft = container.scrollWidth - container.clientWidth;
-  const newScrollLeft = container.scrollLeft + offset;
+  const scroll = (offset) => {
+    const container = scrollRef.current;
+    if (!container) return;
 
-  if (offset > 0 && newScrollLeft >= maxScrollLeft) {
-    container.scrollTo({ left: 0, behavior: "smooth" });
-  } else if (offset < 0 && container.scrollLeft <= 0) {
-    container.scrollTo({ left: maxScrollLeft, behavior: "smooth" });
-  } else {
+    const cardWidth = container.querySelector(".card")?.offsetWidth || 380;
+    const totalCards = loopedTestimonials.length;
+    const maxScrollLeft = container.scrollWidth;
+
     container.scrollBy({ left: offset, behavior: "smooth" });
-  }
-};
 
+    // After scroll ends, check if we're near the edges
+    setTimeout(() => {
+      if (container.scrollLeft <= cardWidth) {
+        // Jump to the same position in the middle set
+        container.scrollLeft =
+          cardWidth * (testimonials.length + 1);
+      } else if (container.scrollLeft >= maxScrollLeft - cardWidth * 2) {
+        // Jump back to middle
+        container.scrollLeft =
+          cardWidth * (testimonials.length - 1);
+      }
+    }, 500); // wait until smooth scroll ends
+  };
 
   return (
-    <section className="bg-[#121418] text-white py-16 px-4 md:px-20 relative overflow-hidden">
+    <section className="bg-[#121418] text-white py-16 px-4 md:px-[32px] relative overflow-hidden">
       {/* Header */}
-      <div className="flex flex-col gap-4 mb-6">
-         <h1 className='text-[#d9edf7] flex items-center gap-2 italic text-[20px]'><div className='bg-white md:w-20 w-8 h-[1px] rounded-4xl'></div> Doctor testimonials</h1>
-          <h2 className="text-[20px] md:text-[40px]">
-            Trusted by experts
-          </h2>
-          <div>
-   <Button text='Become a provider' />
-          </div>
+      <div className="flex flex-col gap-4 mb-6 2xl:px-[30rem] px-0">
+        <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic text-[20px]">
+          <div className="bg-white md:w-20 w-8 h-[1px] rounded-4xl"></div>{" "}
+          Doctor testimonials
+        </h1>
+        <h2 className="text-[20px] md:text-[40px] text-[#d9edf7] font-xxthin">
+          Trusted by experts
+        </h2>
+        <div>
+          <Button text="Become a provider" bg="#292930" txt="#fff"/>
+        </div>
       </div>
 
-      <div className="hidden md:flex justify-end gap-4 mb-6">
+      {/* Arrows */}
+      <div className="hidden xl:flex justify-end gap-4 mb-6 2xl:pr-[5rem]">
         <motion.button
           whileHover={{ scale: 1.2 }}
           whileTap={{ scale: 0.9 }}
@@ -95,30 +119,44 @@ const scroll = (offset) => {
         </motion.button>
       </div>
 
+      {/* Carousel */}
+<div
+  ref={scrollRef}
+  className="
+    scroll-hide overflow-x-auto scroll-smooth scrollbar-hide
+    px-[5%]   /* default padding for peek */
+    snap-x snap-mandatory
+  "
+>
+  <div className="flex gap-6 w-full">
+    {loopedTestimonials.map((item, index) => (
       <div
-        ref={scrollRef}
-        className="scroll-hide overflow-x-auto scroll-smooth scrollbar-hide"
+        key={index}
+        className="
+          card flex-shrink-0
+          w-[80%] sm:w-[90%] lg:w-[33%] xl:w-[33%] 2xl:w-[20%]
+          bg-[#c8d7de] p-6 rounded-4xl sm:min-h-[360px] md:min-h-[300px]
+          snap-center flex flex-col justify-between
+        "
       >
-        <div className="flex gap-6 w-max px-2">
-          {testimonials.map((item, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 w-[250px] md:w-[380px] bg-[#c8d7de] text-black p-6 rounded-2xl"
-            >
-              <div className="text-3xl text-black mb-4">“</div>
-              <p className="text-sm mb-6">{item.quote}</p>
-              <div className="flex items-center gap-3 mt-auto">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-10 h-10 rounded-full object-cover"
-                />
-                <p className="italic font-medium text-black">{item.name}</p>
-              </div>
-            </div>
-          ))}
+        <div>
+        <div className="md:text-xl text-[#15161A] md:mb-4"><FaQuoteLeft/></div>
+        <p className="text-[17px] md:text-[18px] font-xxthin mb-6 text-[#15161A]">
+          {item.quote}
+        </p>
+        </div>
+        <div className="flex items-center gap-3 mt-auto">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-10 h-10 rounded-full object-cover"
+          />
+          <p className="italic font-medium text-black">{item.name}</p>
         </div>
       </div>
+    ))}
+  </div>
+</div>
     </section>
   );
 };

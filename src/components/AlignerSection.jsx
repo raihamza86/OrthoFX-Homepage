@@ -75,7 +75,7 @@ const AlignerSection = () => {
       {aligners.map((item, index) => (
         <motion.div
           key={index}
-          className="relative rounded-3xl overflow-hidden bg-cover bg-center min-h-[500px] flex items-end hover:cursor-pointer"
+          className="relative rounded-3xl overflow-hidden bg-no-repeat bg-cover bg-center min-h-[650px] flex items-end hover:cursor-pointer"
           style={{
             backgroundImage: `url(${item.image})`,
           }}

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { FaQuoteLeft } from "react-icons/fa";
 
 const testimonials = [
   {
@@ -67,19 +68,19 @@ const TestimonialSlider = () => {
   const { quote, author } = testimonials[index];
 
   return (
-    <section className="bg-[#121418] text-white py-16 px-4 md:px-[32px] flex flex-col lg:flex-row lg:items-center justify-between gap-6 lg:gap-0">
+    <section className="bg-[#121418] text-white py-16 px-4 md:px-[32px] 2xl:px-[30rem] flex flex-col lg:flex-row lg:items-start justify-between gap-6 lg:gap-0">
       {/* Left Title */}
-      <div>
-        <h1 className="text-[#d9edf7] flex items-center gap-2 italic text-[20px]">
+      <div className="">
+        <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic text-nowrap text-[20px]">
           <div className="bg-white md:w-20 w-8 h-[1px] rounded-4xl"></div> Customer testimonials
         </h1>
-        <h2 className="text-[20px] md:text-[40px] text-left">
+        <h2 className="text-[20px] text-[#d9edf7] font-xxthin leading-[40px] md:text-[40px] 2xl:text-[64px] 2xl:leading-[70px] text-left mt-2">
           Real people <br /> real results
         </h2>
       </div>
 
       {/* Slider */}
-      <div className="max-w-3xl mx-auto flex flex-col items-center gap-6 relative">
+      <div className="max-w-3xl flex flex-col lg:items-center gap-6 relative md:w-[800px] md:h-[250px] xl:h-[280px] 2xl:h-[450px] md:mt-16 lg:mt-8">
         <div className="flex items-center gap-6">
           <motion.button
             whileHover={{ scale: 1.1, backgroundColor: "#fff", color: "#000" }}
@@ -90,7 +91,7 @@ const TestimonialSlider = () => {
             <IoIosArrowBack size={20} />
           </motion.button>
 
-          <span className="text-white/80 text-lg">
+          <span className="text-[#d9edf7] libre-baskerville-regular-italic text-lg">
             {index + 1} / {testimonials.length}
           </span>
 
@@ -105,20 +106,27 @@ const TestimonialSlider = () => {
         </div>
 
         {/* Animated Quote */}
-        <AnimatePresence custom={direction} mode="wait">
-          <motion.div
-            key={index}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            className="text-xl md:text-2xl italic max-w-2xl text-white mt-4 text-center"
-          >
-            “{quote}”
-            <p className="mt-4 text-white/60 text-base italic">{author}</p>
-          </motion.div>
-        </AnimatePresence>
+<AnimatePresence custom={direction} mode="wait">
+  <motion.div
+    key={index}
+    custom={direction}
+    variants={variants}
+    initial="enter"
+    animate="center"
+    exit="exit"
+    transition={{ duration: 0.5 }}
+    layout
+    className="text-xl md:text-2xl font-xxthin leading-[30px] text-[#d9edf7] max-w-2xl mt-4 2xl:text-[28px] lg:w-[430px] xl:w-[630px] 2xl:w-[450px]"
+  >
+   <span className="flex items-start gap-2">
+      {/* Fixed icon size */}
+      <FaQuoteLeft className="text-[1rem] flex-shrink-0" />
+      <span>{quote}</span>
+    </span>
+    <p className="mt-4 text-[#d9edf7] text-base italic ml-6">{author}</p>
+  </motion.div>
+</AnimatePresence>
+
       </div>
     </section>
   );

@@ -8,9 +8,8 @@ const fadeUp = {
 };
 
 const headings = [
-  "Why we are different?",
-  "Why we are different?",
-  "Why we are different?",
+  "Why are we different?",
+  "Why are we different?",
 ];
 
 
@@ -205,15 +204,24 @@ useEffect(() => {
             width: `${sectionWidth.current * headings.length}px`
           }}
         >
-          {headings.map((text, i) => (
+          {headings.map((text, i) => {
+  const words = text.split(" ");
+  const lastWord = words.pop(); // take last word
+  const rest = words.join(" ");
+
+  return (
+
             <h2
               key={i}
-              className="text-[#c8d7de] text-[96px] whitespace-nowrap"
+              className="text-[#c8d7de] text-[96px] whitespace-nowrap font-xxthin"
               style={{ width: `${sectionWidth.current}px` }}
             >
-              {text}
-            </h2>
-          ))}
+      {rest}{" "}
+      <span className="libre-baskerville-regular-italic">
+        {lastWord}
+      </span>
+            </h2>)
+          })}
         </motion.div>
       </div>
 
@@ -229,10 +237,10 @@ useEffect(() => {
         {/* Section 01 - with increased right margin */}
         <div className="min-w-full flex gap-8 p-6 snap-start mr-[10rem]" style={{ scrollSnapAlign: 'start' }}>
           <div className="flex flex-col gap-5 w-1/2">
-            <h1 className="text-[#d9edf7] flex items-center gap-2 italic">
+            <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic">
               <div className="bg-[#d9edf7] w-20 h-[2px] rounded-4xl"></div> 01
             </h1>
-            <h2 className="text-[56px] text-[#C8D7DE]">
+            <h2 className="text-[56px] text-[#C8D7DE] font-xxthin">
               Comfort meets <br /> efficiency
             </h2>
             <div className="h-[300px] w-full">
@@ -245,7 +253,7 @@ useEffect(() => {
             </div>
           </div>
           <div className="flex flex-col gap-5 w-1/2 mt-[7rem]">
-            <h2 className="text-[22px] text-[#C8D7DE]">
+            <h2 className="text-[22px] text-[#C8D7DE] font-xxthin">
               Our aligners apply optimal force with a gentle, consistent touch. While traditional aligners may use up to 8.4x more force, ours deliver precise control for a more comfortable experience.**
             </h2>
             <div className="flex gap-4 w-full h-[300px]">
@@ -266,14 +274,14 @@ useEffect(() => {
         {/* Section 02 - with increased left margin */}
         <div className="min-w-full flex gap-8 p-6 snap-start ml-[10rem]" style={{ scrollSnapAlign: 'start' }}>
           <div className="flex flex-col gap-5 w-1/2">
-            <h1 className="text-[#d9edf7] flex items-center gap-2 italic">
+            <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic">
               <div className="bg-[#d9edf7] w-20 h-[2px] rounded-4xl"></div> 02
             </h1>
-            <h2 className="text-[32px] text-[#C8D7DE]">
+            <h2 className="text-[32px] text-[#C8D7DE] font-xxthin">
               AirFlex™ aligners, <br /> advanced material
             </h2>
             <div>
-              <Button text="OrthoFX Difference" />
+              <Button text="OrthoFX Difference" bg="#292930" txt="#fff"/>
             </div>
             <div className="h-[300px] w-full">
               <motion.img
@@ -284,7 +292,7 @@ useEffect(() => {
             </div>
           </div>
           <div className="flex flex-col gap-5 w-1/2 mt-[8rem]">
-            <p className="text-[18px] text-[#c8d7de]">
+            <p className="text-[18px] text-[#c8d7de] font-xxthin">
               AirFlex™ is the new generation of clear aligners, featuring patented HyperElastic™ polymer for sustained optimal force delivery. It supports natural bone remodeling and reduces daytime relapse when not wearing aligners.**
             </p>
             <div className="flex gap-4 w-full h-[300px]">
