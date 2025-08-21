@@ -40,10 +40,9 @@ const HowItWorks = () => {
       const rect = section.getBoundingClientRect();
       const fullyInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
 
-      if (!fullyInView) return; // only hijack when section is fully visible
+      if (!fullyInView) return;
 
       if (isMobile) {
-        // Horizontal hijack
         if (
           (e.deltaY > 0 && el.scrollLeft + el.clientWidth < el.scrollWidth) ||
           (e.deltaY < 0 && el.scrollLeft > 0)
@@ -52,7 +51,6 @@ const HowItWorks = () => {
           el.scrollLeft += e.deltaY;
         }
       } else {
-        // Vertical hijack
         if (
           (e.deltaY > 0 && el.scrollTop + el.clientHeight < el.scrollHeight) ||
           (e.deltaY < 0 && el.scrollTop > 0)
@@ -93,20 +91,20 @@ const HowItWorks = () => {
   return (
     <section
       ref={sectionRef}
-      className="h-[110vh] md:h-screen w-full bg-[url('/howitworks-bg.png')] bg-cover bg-no-repeat bg-center relative overflow-hidden rounded-[2rem]"
+      className="min-h-screen w-full bg-[url('/howitworks-bg.png')] bg-cover bg-no-repeat bg-center relative overflow-hidden rounded-[2rem]"
     >
       {/* Left Text */}
       <motion.div
-        className="absolute top-6 md:top-1/2 md:-translate-y-1/2 left-6 md:left-16 z-10 text-white w-[200px] md:max-w-[400px] lg:min-w-[400px] 2xl:left-[30rem] 2xl:bottom-[30rem]"
+        className="absolute top-8 md:top-1/2 2xl:top-[70%] md:-translate-y-1/2 left-6 md:left-16 lg:left-20 xl:left-42 2xl:left-[16%] z-10 text-white max-w-[220px] sm:max-w-[300px] md:max-w-[400px] lg:max-w-[420px]"
         initial={{ opacity: 0, x: -50 }}
         whileInView={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        <h1 className="text-white flex items-center gap-2 libre-baskerville-regular-italic text-[20px]">
-          <div className="bg-white md:w-20 w-8 h-[1px] rounded-4xl"></div> How it works
+        <h1 className="text-white flex items-center gap-2 libre-baskerville-regular-italic text-[18px] sm:text-[20px]">
+          <div className="bg-white w-8 sm:w-12 md:w-20 h-[1px] rounded-4xl"></div> How it works
         </h1>
-        <h2 className="text-[20px] font-xxthin md:text-[45px] 2xl:text-[50px] mb-4">
+        <h2 className="text-[30px] leading-[40px] 2xl:leading-[70px] sm:text-[28px] md:text-[40px] lg:text-[45px] 2xl:text-[50px] font-xxthin mb-4">
           3 easy steps <span className="libre-baskerville-regular-italic font-light">to a confident smile</span>
         </h2>
         <Button text="Find a doctor" />
@@ -114,7 +112,7 @@ const HowItWorks = () => {
 
       {/* Cards Scroll Section */}
       <motion.div
-        className="absolute top-0 right-0 h-full w-full lg:w-[50%] flex justify-end z-10  2xl:right-[40rem]"
+        className="absolute mt-18 md:mt-0 top-0 right-0 lg:right-4 xl:right-[12%] 2xl:right-[20%] h-full w-full lg:w-[55%] xl:w-[50%] flex justify-end z-10"
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
@@ -124,7 +122,7 @@ const HowItWorks = () => {
           ref={scrollRef}
           className={`scroll-hide h-full flex ${
             isMobile ? "flex-row overflow-x-auto snap-x" : "flex-col overflow-y-auto snap-y"
-          } py-12 md:py-24 px-6 md:px-10 gap-6 md:items-end items-end md:pr-16 md:snap-mandatory`}
+          } py-12 md:py-20 px-6 md:px-10 gap-6 items-end md:pr-12 lg:pr-16`}
           style={{
             scrollSnapType: isMobile ? "x mandatory" : "y mandatory",
           }}
@@ -132,12 +130,18 @@ const HowItWorks = () => {
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              className="bg-[#c8d7de] min-w-[65vw] min-h-[65vw] md:max-w-[400px] md:min-w-[400px] md:min-h-[400px] p-2 md:p-8 rounded-3xl shadow-md flex flex-col md:gap-2 justify-center"
+              className="bg-[#c8d7de] min-w-[60vw] min-h-[60vw] max-h-[60vw] md:max-w-[300px] md:min-w-[300px] md:min-h-[300px] md:max-h-[300px] lg:min-h-[300px] lg:max-h-[300px] xl:min-w-[400px] p-4 md:p-6 lg:p-8 rounded-3xl shadow-md flex flex-col gap-2 justify-center snap-center"
               variants={cardVariants}
             >
-              <p className="libre-baskerville-regular-italic text-[#15161a] text-[18px] md:text-[20px]">{step.step}</p>
-              <h3 className="text-[#15161a] text-[18px] md:text-[32px] font-xxthin">{step.title}</h3>
-              <p className="mt-2 text-[#15161a] text-[14px] md:text-[18px] ">{step.description}</p>
+              <p className="libre-baskerville-regular-italic text-[#15161a] text-[16px] sm:text-[18px] md:text-[20px] xl:leading-[24px]">
+                {step.step}
+              </p>
+              <h3 className="text-[#15161a] text-[18px] md:text-[22px] xl:text-[32px] xl:leading-[38px] font-xxthin leading-[20px] lg:leading-[24px]">
+                {step.title}
+              </h3>
+              <p className="mt-2 text-[#15161a] text-[14px] md:text-[14px] leading-[20px] xl:leading-[25px] xl:text-[18px]">
+                {step.description}
+              </p>
             </motion.div>
           ))}
         </div>

@@ -83,9 +83,9 @@ const DoctorTestimonials = () => {
   };
 
   return (
-    <section className="bg-[#121418] text-white py-16 px-4 md:px-[32px] relative overflow-hidden">
+    <section className="bg-[#121418] text-white py-16  relative overflow-hidden">
       {/* Header */}
-      <div className="flex flex-col gap-4 mb-6 2xl:px-[30rem] px-0">
+      <div className="flex flex-col gap-4 mb-6 px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-[16%]">
         <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic text-[20px]">
           <div className="bg-white md:w-20 w-8 h-[1px] rounded-4xl"></div>{" "}
           Doctor testimonials
@@ -94,26 +94,26 @@ const DoctorTestimonials = () => {
           Trusted by experts
         </h2>
         <div>
-          <Button text="Become a provider" bg="#292930" txt="#fff"/>
+          <Button text="Become a provider" bg="#292930" txt="#fff" border="#292930"/>
         </div>
       </div>
 
       {/* Arrows */}
-      <div className="hidden xl:flex justify-end gap-4 mb-6 2xl:pr-[5rem]">
+      <div className="hidden xl:flex justify-end gap-4 mb-6 px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-[16%]">
         <motion.button
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.2, opacity: 0.7 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => scroll(-400)}
-          className="w-10 h-10 rounded-full border border-white text-white flex items-center justify-center hover:bg-white hover:text-black transition"
+          className="w-10 h-10 rounded-full border border-white text-white flex items-center justify-center hover:cursor-pointer transition"
         >
           <IoIosArrowBack size={20} />
         </motion.button>
 
         <motion.button
-          whileHover={{ scale: 1.2 }}
+          whileHover={{ scale: 1.2, opacity: 0.7 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => scroll(400)}
-          className="w-10 h-10 rounded-full border border-white text-white flex items-center justify-center hover:bg-white hover:text-black transition"
+          className="w-10 h-10 rounded-full border border-white text-white flex items-center justify-center hover:cursor-pointer transition"
         >
           <IoIosArrowForward size={20} />
         </motion.button>

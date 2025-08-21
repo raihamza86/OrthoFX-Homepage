@@ -21,7 +21,7 @@ const fadeUp = {
 const WhyDifferent = () => {
   return (
     <motion.div
-      className="my-4 xl:block 2xl:hidden"
+      className="my-8 max-w-screen-xl mx-auto xl:block 2xl:hidden"
       variants={containerVariants}
       initial="hidden"
       whileInView="show"
@@ -29,25 +29,28 @@ const WhyDifferent = () => {
     >
       {/* Title */}
       <motion.h2
-        className="text-[#c8d7de] text-[40px] md:text-[96px] font-xxthin"
+        className="text-[#c8d7de] text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-xxthin leading-snug"
         variants={fadeUp}
       >
-        Why are we <span className='libre-baskerville-regular-italic'> different?</span>
+        Why are we{' '}
+        <span className="libre-baskerville-regular-italic">different?</span>
       </motion.h2>
 
       {/* Section 01 */}
-      <motion.div className="flex flex-col gap-5" variants={fadeUp}>
-        <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic">
-          <div className="bg-white w-20 h-[2px] rounded-4xl"></div> 01
+      <motion.div className="flex flex-col gap-5 mt-6" variants={fadeUp}>
+        <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic text-base sm:text-lg md:text-xl">
+          <div className="bg-white w-16 sm:w-20 h-[2px] rounded-4xl"></div> 01
         </h1>
-        <h2 className="text-[32px] text-[#d9edf7] font-xxthin">
-          Comfort meets<br />efficiency
+        <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#d9edf7] font-xxthin">
+          Comfort meets <br /> efficiency
         </h2>
-        <p className="text-[18px] text-[#c8d7de] font-xxthin">
-          Our aligners apply optimal force with a gentle, consistent touch. While traditional aligners may use up to 8.4x more force, ours deliver precise control for a more comfortable experience.**
+        <p className="text-base sm:text-lg text-[#c8d7de] font-xxthin leading-relaxed max-w-3xl">
+          Our aligners apply optimal force with a gentle, consistent touch.
+          While traditional aligners may use up to 8.4x more force, ours deliver
+          precise control for a more comfortable experience.**
         </p>
         <motion.img
-          className="rounded-2xl md:w-[50%]"
+          className="rounded-2xl w-full sm:w-3/4 md:w-1/2 lg:w-[45%]"
           src="/trusted-3.jpg"
           alt="not found"
           variants={fadeUp}
@@ -55,21 +58,29 @@ const WhyDifferent = () => {
       </motion.div>
 
       {/* Section 02 */}
-      <motion.div className="flex flex-col gap-5 mt-8" variants={fadeUp}>
-        <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic">
-          <div className="bg-white w-20 h-[2px] rounded-4xl"></div> 02
+      <motion.div className="flex flex-col gap-5 mt-12" variants={fadeUp}>
+        <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic text-base sm:text-lg md:text-xl">
+          <div className="bg-white w-16 sm:w-20 h-[2px] rounded-4xl"></div> 02
         </h1>
-        <h2 className="text-[32px] text-[#d9edf7] font-xxthin">
-          AirFlex™ aligners,<br />advanced material
+        <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#d9edf7] font-xxthin">
+          AirFlex™ aligners, <br /> advanced material
         </h2>
-        <p className="text-[18px] text-[#c8d7de] font-xxthin">
-          AirFlex™ is the new generation of clear aligners, featuring patented HyperElastic™ polymer for sustained optimal force delivery. It supports natural bone remodeling and reduces daytime relapse when not wearing aligners.**
+        <p className="text-base sm:text-lg text-[#c8d7de] font-xxthin leading-relaxed max-w-3xl">
+          AirFlex™ is the new generation of clear aligners, featuring patented
+          HyperElastic™ polymer for sustained optimal force delivery. It
+          supports natural bone remodeling and reduces daytime relapse when not
+          wearing aligners.**
         </p>
         <motion.div variants={fadeUp}>
-          <Button text="OrthoFX Difference" bg='#292930' txt='#fff'/>
+          <Button
+            text="OrthoFX Difference"
+            bg="#292930"
+            txt="#fff"
+            border="#292930"
+          />
         </motion.div>
         <motion.img
-          className="rounded-2xl md:w-[50%]"
+          className="rounded-2xl w-full sm:w-3/4 md:w-1/2 lg:w-[45%]"
           src="/trusted-4.jpg"
           alt="not found"
           variants={fadeUp}

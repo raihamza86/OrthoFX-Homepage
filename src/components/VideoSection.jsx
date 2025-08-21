@@ -4,43 +4,43 @@ import { motion } from "framer-motion";
 
 const VideoSection = () => {
   return (
-    <section className="flex flex-col gap-12 my-8 md:my-16">
+    <section className="flex flex-col gap-12 my-8 md:my-16 px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-[16%]">
+      {/* Video Container */}
       <motion.div
-        className="relative w-full flex justify-center items-center px-0"
+        className="relative w-full flex justify-center items-center"
         initial={{ opacity: 0, scale: 0.95 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true }}
       >
         <motion.div
-          className="relative w-full h-[120vh] md:h-[120vh] 2xl:h-[65vh] overflow-hidden rounded-2xl sm:rounded-[2.5rem] xl:max-w-[90%] xl:h-auto md:aspect-video shadow-xl px-4 md:px-8 lg:h-auto"
+          className="relative w-full h-[600px] md:aspect-video overflow-hidden rounded-2xl sm:rounded-[2.5rem] shadow-xl max-w-screen-2xl 2xl:min-w-[80vw] 2xl:max-w-full mx-auto 2xl:h-[70vh] 2xl:aspect-auto"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
           viewport={{ once: true }}
         >
           {/* Background Video */}
-<div className="w-full h-full rounded-4xl sm:rounded-[2.5rem] overflow-hidden">
-  <video
-    autoPlay
-    loop
-    muted
-    playsInline
-    className="w-full h-full object-cover"
-  >
-    <source src="/video.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-</div>
-
+          <div className="w-full h-full rounded-2xl sm:rounded-[2.5rem] overflow-hidden">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/video.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
 
           {/* Overlay */}
           <div className="absolute inset-0 bg-black/10 z-10" />
 
           {/* Text + Buttons */}
-          <div className="absolute inset-0 flex flex-col xl:justify-start justify-between items-start gap-6 p-6 sm:p-10 z-20 text-white">
+          <div className="absolute inset-0 flex flex-col justify-between xl:justify-start items-start gap-6 p-6 sm:p-10 z-20 text-white">
             <motion.h1
-              className="text-3xl md:text-[40px] ml-6 md:ml-4 font-xxthin leading-[64px] drop-shadow-lg"
+              className="text-3xl md:text-[40px] font-xxthin leading-snug drop-shadow-lg"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -50,7 +50,7 @@ const VideoSection = () => {
             </motion.h1>
 
             <motion.div
-              className="flex flex-col xl:flex-row items-start xl:items-center gap-4 ml-6 md:ml-4"
+              className="flex flex-col xl:flex-row items-start xl:items-center gap-4"
               initial="hidden"
               whileInView="visible"
               variants={{
@@ -75,7 +75,12 @@ const VideoSection = () => {
                   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
                 }}
               >
-                <Button text="Smile quiz" bg="#292930" txt="white" />
+                <Button
+                  text="Smile quiz"
+                  bg="#292930"
+                  txt="white"
+                  border="#292930"
+                />
               </motion.div>
             </motion.div>
           </div>
@@ -84,19 +89,19 @@ const VideoSection = () => {
 
       {/* Disclaimer */}
       <motion.div
-        className="px-4 md:mt-[6rem] md:mb-[3rem] md:px-6 lg:px-24 xl:ml-[-2rem] font-xxthin xl:mt-[3rem] xl:mb-[2rem] 2xl:ml-[20rem] 2xl:mt-[6rem] 2xl:mb-[3rem]"
+        className=" max-w-screen-lg font-xxthin my-8"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         viewport={{ once: true }}
       >
-        <p className="text-[#c8d7de] text-sm sm:text-base md:text-lg leading-[22px]">
+        <p className="text-[#c8d7de] text-sm sm:text-base md:text-lg leading-relaxed">
           *FDA-Cleared for at least 12 hours of continuous daily wear time.
-          <br className="" />
+          <br />
           **Data on file.
-          <br className="" />
+          <br />
           ¹ These opinions are of patients treated. Results may vary.
-          <br className="" />
+          <br />
           ² Opinions of OrthoFX providers mentioned. Clinicians should use their
           judgement in treating their patients.
         </p>

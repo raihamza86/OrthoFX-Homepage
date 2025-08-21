@@ -68,7 +68,7 @@ const TestimonialSlider = () => {
   const { quote, author } = testimonials[index];
 
   return (
-    <section className="bg-[#121418] text-white py-16 px-4 md:px-[32px] 2xl:px-[30rem] flex flex-col lg:flex-row lg:items-start justify-between gap-6 lg:gap-0">
+    <section className="bg-[#121418] text-white py-16 px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-[16%] flex flex-col lg:flex-row lg:items-start justify-between gap-6 lg:gap-0">
       {/* Left Title */}
       <div className="">
         <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic text-nowrap text-[20px]">
@@ -83,7 +83,7 @@ const TestimonialSlider = () => {
       <div className="max-w-3xl flex flex-col lg:items-center gap-6 relative md:w-[800px] md:h-[250px] xl:h-[280px] 2xl:h-[450px] md:mt-16 lg:mt-8">
         <div className="flex items-center gap-6">
           <motion.button
-            whileHover={{ scale: 1.1, backgroundColor: "#fff", color: "#000" }}
+            whileHover={{ scale: 1.1, opacity: 0.7 }}
             whileTap={{ scale: 0.9 }}
             onClick={handlePrev}
             className="w-10 h-10 rounded-full border border-white flex items-center justify-center transition hover:cursor-pointer"
@@ -96,7 +96,7 @@ const TestimonialSlider = () => {
           </span>
 
           <motion.button
-            whileHover={{ scale: 1.1, backgroundColor: "#fff", color: "#000" }}
+            whileHover={{ scale: 1.1, opacity: 0.7 }}
             whileTap={{ scale: 0.9 }}
             onClick={handleNext}
             className="w-10 h-10 rounded-full border border-white flex items-center justify-center transition hover:cursor-pointer"
@@ -116,7 +116,7 @@ const TestimonialSlider = () => {
     exit="exit"
     transition={{ duration: 0.5 }}
     layout
-    className="text-xl md:text-2xl font-xxthin leading-[30px] text-[#d9edf7] max-w-2xl mt-4 2xl:text-[28px] lg:w-[430px] xl:w-[630px] 2xl:w-[450px]"
+    className="text-xl md:text-2xl font-xxthin leading-[30px] text-[#d9edf7] max-w-2xl mt-4 2xl:text-[28px] lg:w-[430px] xl:w-[630px] 2xl:w-[450px] lg:self-end"
   >
    <span className="flex items-start gap-2">
       {/* Fixed icon size */}

@@ -40,11 +40,11 @@ const linkVariants = {
 };
 
 const Footer = () => (
-  <footer className="bg-[#121418] text-white overflow-hidden">
-    <div className="2xl:px-[10rem] px-0">
+  <footer className="bg-[#15161a] text-white overflow-hidden">
+    <div className="">
     {/* Divider */}
     <motion.div
-      className="border-t border-[#c8d7de] mb-8 2xl:px-[10rem]"
+      className="border-t border-[#c8d7de] mb-8 2xl:mx-[10%]"
       initial={{ scaleX: 0 }}
       whileInView={{ scaleX: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
@@ -52,7 +52,7 @@ const Footer = () => (
       style={{ originX: 0 }}
     />
 
-    <div className="py-4 px-6 md:px-20 max-w-[1200px] grid grid-cols-2 lg:grid-cols-3 gap-8">
+    <div className="py-4 px-6 md:px-12 lg:px-20 xl:px-40 2xl:px-[16%] max-w-[1200px] grid grid-cols-2 lg:grid-cols-3 gap-8 2xl:gap-80">
       {/* Company Section */}
       <motion.div
         custom={0}
@@ -61,7 +61,7 @@ const Footer = () => (
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <h3 className="libre-baskerville-regular-italic text-lg mb-4 text-[#d9edf7] text-[20px]">
+        <h3 className="libre-baskerville-regular-italic text-lg mb-4 text-[#d9edf7] text-[20px] leading-[24px]">
           Company
         </h3>
         <ul className="space-y-2 text-sm">
@@ -78,7 +78,7 @@ const Footer = () => (
             >
               <a
                 href="#"
-                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px]"
+                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px] leading-[22px] text-nowrap"
               >
                 {link}
               </a>
@@ -95,7 +95,7 @@ const Footer = () => (
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <h3 className="text-lg mb-4 text-[#d9edf7] text-[20px] libre-baskerville-regular-italic">
+        <h3 className="text-lg mb-4 text-[#d9edf7] text-[20px] libre-baskerville-regular-italic leading-[24px]">
           Products
         </h3>
         <ul className="space-y-2 text-sm">
@@ -112,7 +112,7 @@ const Footer = () => (
             >
               <a
                 href="#"
-                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px]"
+                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px] leading-[22px] text-nowrap"
               >
                 {link}
               </a>
@@ -130,7 +130,7 @@ const Footer = () => (
         viewport={{ once: true }}
         className="mt-[-9rem] md:mt-[-10rem] lg:mt-0"
       >
-        <h3 className="font-xxthin text-lg mb-4 text-[#d9edf7] text-[20px] libre-baskerville-regular-italic">
+        <h3 className="font-xxthin text-lg mb-4 text-[#d9edf7] text-[20px] libre-baskerville-regular-italic leading-[24px]">
           Resources
         </h3>
         <ul className="space-y-2 text-sm">
@@ -147,7 +147,7 @@ const Footer = () => (
             >
               <a
                 href="#"
-                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px]"
+                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px] leading-[22px] text-nowrap"
               >
                 {link}
               </a>
