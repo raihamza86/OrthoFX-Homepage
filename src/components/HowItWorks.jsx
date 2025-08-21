@@ -31,62 +31,82 @@ const HowItWorks = () => {
     return () => window.removeEventListener("resize", checkScreen);
   }, []);
 
-  useEffect(() => {
-    const el = scrollRef.current;
-    const section = sectionRef.current;
-    if (!el || !section) return;
+useEffect(() => {
+  const el = scrollRef.current;
+  const section = sectionRef.current;
+  if (!el || !section) return;
 
-    const handleWheel = (e) => {
-      const rect = section.getBoundingClientRect();
-      const fullyInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+  const handleWheel = (e) => {
+    const rect = section.getBoundingClientRect();
+    const inView = rect.top < window.innerHeight * 0.5 && rect.bottom > window.innerHeight * 0.5;
+    if (!inView) return;
 
-      if (!fullyInView) return;
+    const atStart = isMobile ? el.scrollLeft === 0 : el.scrollTop === 0;
+    const atEnd = isMobile
+      ? el.scrollLeft + el.clientWidth >= el.scrollWidth
+      : el.scrollTop + el.clientHeight >= el.scrollHeight;
 
-      if (isMobile) {
-        if (
-          (e.deltaY > 0 && el.scrollLeft + el.clientWidth < el.scrollWidth) ||
-          (e.deltaY < 0 && el.scrollLeft > 0)
-        ) {
-          e.preventDefault();
-          el.scrollLeft += e.deltaY;
-        }
-      } else {
-        if (
-          (e.deltaY > 0 && el.scrollTop + el.clientHeight < el.scrollHeight) ||
-          (e.deltaY < 0 && el.scrollTop > 0)
-        ) {
-          e.preventDefault();
-          el.scrollTop += e.deltaY;
-        }
-      }
-    };
+    if ((e.deltaY > 0 && atEnd) || (e.deltaY < 0 && atStart)) {
+      // ✅ let page scroll if at edges
+      return;
+    }
 
-    const handleKey = (e) => {
-      const rect = section.getBoundingClientRect();
-      const fullyInView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+    e.preventDefault();
+    const step = isMobile ? el.clientWidth * 0.3 : el.clientHeight * 0.3;
 
-      if (!fullyInView) return;
+    if (e.deltaY > 0) {
+      isMobile
+        ? el.scrollBy({ left: step, behavior: "smooth" })
+        : el.scrollBy({ top: step, behavior: "smooth" });
+    } else {
+      isMobile
+        ? el.scrollBy({ left: -step, behavior: "smooth" })
+        : el.scrollBy({ top: -step, behavior: "smooth" });
+    }
+  };
 
-      let step = isMobile ? el.clientWidth * 0.9 : el.clientHeight * 0.9;
+const handleKey = (e) => {
+  const rect = section.getBoundingClientRect();
+  const inView =
+    rect.top < window.innerHeight * 0.5 &&
+    rect.bottom > window.innerHeight * 0.5;
+  if (!inView) return;
 
-      if (["ArrowDown", "PageDown", " "].includes(e.key)) {
-        e.preventDefault();
-        isMobile ? (el.scrollLeft += step) : (el.scrollTop += step);
-      }
-      if (["ArrowUp", "PageUp"].includes(e.key)) {
-        e.preventDefault();
-        isMobile ? (el.scrollLeft -= step) : (el.scrollTop -= step);
-      }
-    };
+  const atStart = isMobile ? el.scrollLeft === 0 : el.scrollTop === 0;
+  const atEnd = isMobile
+    ? el.scrollLeft + el.clientWidth >= el.scrollWidth
+    : el.scrollTop + el.clientHeight >= el.scrollHeight;
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    window.addEventListener("keydown", handleKey);
+  let step = isMobile ? el.clientWidth * 0.9 : el.clientHeight * 0.9;
 
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-      window.removeEventListener("keydown", handleKey);
-    };
-  }, [isMobile]);
+  if (["ArrowDown", "PageDown", " "].includes(e.key)) {
+    if (atEnd) return; // ✅ allow page scroll when at end
+    e.preventDefault(); // only block when scrolling inside
+    isMobile
+      ? el.scrollBy({ left: step, behavior: "smooth" })
+      : el.scrollBy({ top: step, behavior: "smooth" });
+  }
+
+  if (["ArrowUp", "PageUp"].includes(e.key)) {
+    if (atStart) return; // ✅ allow page scroll when at start
+    e.preventDefault(); // only block when scrolling inside
+    isMobile
+      ? el.scrollBy({ left: -step, behavior: "smooth" })
+      : el.scrollBy({ top: -step, behavior: "smooth" });
+  }
+};
+
+
+  window.addEventListener("wheel", handleWheel, { passive: false });
+  window.addEventListener("keydown", handleKey);
+
+  return () => {
+    window.removeEventListener("wheel", handleWheel);
+    window.removeEventListener("keydown", handleKey);
+  };
+}, [isMobile]);
+
+
 
   return (
     <section

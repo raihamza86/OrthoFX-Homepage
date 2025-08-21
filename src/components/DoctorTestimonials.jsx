@@ -99,7 +99,7 @@ const DoctorTestimonials = () => {
       </div>
 
       {/* Arrows */}
-      <div className="hidden xl:flex justify-end gap-4 mb-6 px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-[16%]">
+      <div className="hidden xl:flex justify-end mt-[-3rem] gap-4 mb-6 px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-[10%]">
         <motion.button
           whileHover={{ scale: 1.2, opacity: 0.7 }}
           whileTap={{ scale: 0.9 }}

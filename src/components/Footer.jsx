@@ -44,7 +44,7 @@ const Footer = () => (
     <div className="">
     {/* Divider */}
     <motion.div
-      className="border-t border-[#c8d7de] mb-8 2xl:mx-[10%]"
+      className="border-t border-[#c8d7de] mb-8 2xl:mx-[10%] [@media(min-width:1768px)_and_(max-width:1868px)]:mx-0"
       initial={{ scaleX: 0 }}
       whileInView={{ scaleX: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}

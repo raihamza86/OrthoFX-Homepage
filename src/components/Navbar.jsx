@@ -104,7 +104,7 @@ const Navbar = () => {
       ${isScrolled === "black" ? "bg-[#15161a]" : ""}
       ${showNavbar ? "translate-y-0" : "-translate-y-full"}`}
     >
-<nav className="max-w-7xl 2xl:max-w-[68%] mx-auto px-6 md:px-12 lg:px-20 xl:px-8 2xl:px-0">
+<nav className="max-w-7xl 2xl:max-w-[68%] mx-auto px-6 md:px-12 lg:px-20 xl:px-8 2xl:px-0 [@media(min-width:1370px)]:px-0">
         <div className="flex items-center justify-between h-[66px] xl:h-[90px] xl:px-12 2xl:px-0 px-0">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -214,7 +214,7 @@ const Navbar = () => {
           </div>
 
           {/* Right Buttons (Desktop) */}
-          <div className="hidden xl:flex items-center space-x-4 ml-auto">
+          <div className="hidden xl:flex items-center space-x-4 ml-auto [@media(min-width:1440px)_and_(max-width:1530px)]:mr-[-2%]">
             <button className="bg-[#292930] text-white py-2 px-4 rounded-full hover:bg-white hover:text-black transition font-xxthin">
               Become a provider
             </button>

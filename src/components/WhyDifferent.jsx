@@ -21,7 +21,7 @@ const fadeUp = {
 const WhyDifferent = () => {
   return (
     <motion.div
-      className="my-8 max-w-screen-xl mx-auto xl:block 2xl:hidden"
+      className="my-8 max-w-screen-xl mx-auto block [@media(min-width:1902px)]:hidden"
       variants={containerVariants}
       initial="hidden"
       whileInView="show"

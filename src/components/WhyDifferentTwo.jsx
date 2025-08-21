@@ -112,6 +112,9 @@ const scrollToSection = (index) => {
   requestAnimationFrame(animate);
 };
 
+
+
+  // Enhanced wheel handling with edge detection
 useEffect(() => {
   const handleWheel = (e) => {
     if (!isComponentActive) return;
@@ -125,73 +128,70 @@ useEffect(() => {
     const atLast = activeIndex === totalSections - 1;
 
     if (e.deltaY > 0 && !atLast) {
-      // Scroll forward inside component
+      // scroll forward inside component
       e.preventDefault();
       scrollToSection(activeIndex + 1);
     } else if (e.deltaY < 0 && !atFirst) {
-      // Scroll backward inside component
+      // scroll backward inside component
       e.preventDefault();
       scrollToSection(activeIndex - 1);
     } else {
-      // ✅ RELEASE: don’t preventDefault when at edges
-      return;
+      // ✅ at edges → do NOT preventDefault → let page scroll
     }
   };
 
   window.addEventListener("wheel", handleWheel, { passive: false });
-
-  return () => {
-    window.removeEventListener("wheel", handleWheel);
-  };
+  return () => window.removeEventListener("wheel", handleWheel);
 }, [activeIndex, isScrolling, isComponentActive]);
 
 
 
-  // Enhanced wheel handling with edge detection
-  useEffect(() => {
-    let lastScrollTime = 0;
-    const scrollCooldown = 600; // ms
 
-    const handleWheel = (e) => {
-      const now = Date.now();
-      if (now - lastScrollTime < scrollCooldown) return;
-      
-      if (!isComponentActive) return;
-      
-      // Check if we're at the edge and should release
-      const atBottomEdge = activeIndex === totalSections - 1 && e.deltaY > 0;
-      const atTopEdge = activeIndex === 0 && e.deltaY < 0;
-      
-      if (atBottomEdge || atTopEdge) {
-        // Allow one normal scroll before releasing
-        if (Math.abs(e.deltaY) > 5) { // Threshold to ignore small wheel movements
-          return;
-        }
-      }
+useEffect(() => {
+  const handleKey = (e) => {
+    if (!isComponentActive) return;
+    if (isScrolling) return;
 
-      e.preventDefault();
-      if (isScrolling) return;
+    const atFirst = activeIndex === 0;
+    const atLast = activeIndex === totalSections - 1;
 
-      lastScrollTime = now;
-      
-      if (e.deltaY > 0 && activeIndex < totalSections - 1) {
+    // scrolling forward keys
+    if (["ArrowDown", "PageDown", " "].includes(e.key)) {
+      if (!atLast) {
+        e.preventDefault();
         scrollToSection(activeIndex + 1);
-      } else if (e.deltaY < 0 && activeIndex > 0) {
+      }
+    }
+
+    // scrolling backward keys
+    if (["ArrowUp", "PageUp"].includes(e.key)) {
+      if (!atFirst) {
+        e.preventDefault();
         scrollToSection(activeIndex - 1);
       }
-    };
+    }
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    if (e.key === "Home" && !atFirst) {
+      e.preventDefault();
+      scrollToSection(0);
+    }
 
-    return () => {
-      window.removeEventListener("wheel", handleWheel);
-    };
-  }, [activeIndex, isScrolling, isComponentActive]);
+    if (e.key === "End" && !atLast) {
+      e.preventDefault();
+      scrollToSection(totalSections - 1);
+    }
+  };
+
+  window.addEventListener("keydown", handleKey, { passive: false, capture: true });
+  return () => window.removeEventListener("keydown", handleKey, { capture: true });
+}, [activeIndex, isScrolling, isComponentActive]);
+
+
 
   return (
     <motion.div 
       ref={componentRef}
-      className="relative my-4 hidden 2xl:block snap-start snap-always"
+      className="relative my-4 snap-start snap-always hidden [@media(min-width:1902px)]:block"
       style={{ scrollSnapAlign: 'start' }}
     >
 
@@ -252,7 +252,7 @@ useEffect(() => {
               />
             </div>
           </div>
-          <div className="flex flex-col gap-5 w-1/2 mt-[7rem]">
+          <div className="flex flex-col gap-5 w-1/2 mt-[9rem]">
             <h2 className="text-[22px] text-[#C8D7DE] font-xxthin">
               Our aligners apply optimal force with a gentle, consistent touch. While traditional aligners may use up to 8.4x more force, ours deliver precise control for a more comfortable experience.**
             </h2>
@@ -281,7 +281,7 @@ useEffect(() => {
               AirFlex™ aligners, <br /> advanced material
             </h2>
             <div>
-              <Button text="OrthoFX Difference" bg="#292930" txt="#fff"/>
+              <Button text="OrthoFX Difference" bg="#292930" txt="#fff" border="#292930"/>
             </div>
             <div className="h-[300px] w-full">
               <motion.img
@@ -291,7 +291,7 @@ useEffect(() => {
               />
             </div>
           </div>
-          <div className="flex flex-col gap-5 w-1/2 mt-[8rem]">
+          <div className="flex flex-col gap-5 w-1/2 mt-[10rem]">
             <p className="text-[18px] text-[#c8d7de] font-xxthin">
               AirFlex™ is the new generation of clear aligners, featuring patented HyperElastic™ polymer for sustained optimal force delivery. It supports natural bone remodeling and reduces daytime relapse when not wearing aligners.**
             </p>

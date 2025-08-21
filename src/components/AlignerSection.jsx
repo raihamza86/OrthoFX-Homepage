@@ -20,27 +20,27 @@ const aligners = [
   {
     title: "FXBright™",
     subtitle: "aligners",
-    image: "/aligner-2.jpg",
-        description:
-      "Enjoy  whiter teeth from the start of your orthodontic treatment",
+    description:
+      "Enjoy whiter teeth from the start of your orthodontic treatment",
     points: [
       "Chemical-free whitening effect",
       "Enhanced comfort",
       "Effortlessly straighter appearance**",
       "Standard 22-hour wear time",
     ],
+    image: "/aligner-2.jpg",
   },
   {
     title: "FXClear™",
     subtitle: "aligners",
-    image: "/aligner-3.jpg",
-        description:
+    description:
       "Custom-made for a precise, comfortable fit, FXClear Aligners align your teeth effortlessly, letting you go about your day with confidence",
     points: [
       "Enhanced comfort and fit",
       "Predictable results**",
       "Standard 22-hour wear time",
     ],
+    image: "/aligner-3.jpg",
   },
 ];
 
@@ -66,7 +66,7 @@ const AlignerSection = () => {
 
   return (
     <motion.div
-      className="flex flex-col lg:grid lg:grid-cols-3 xl:flex xl:flex-row gap-6 my-6 overflow-hidden"
+      className="flex flex-col lg:flex-row gap-6 my-6 overflow-hidden"
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
@@ -75,14 +75,12 @@ const AlignerSection = () => {
       {aligners.map((item, index) => (
         <motion.div
           key={index}
-          className="relative rounded-3xl overflow-hidden bg-no-repeat bg-cover bg-center min-h-[650px] flex items-end hover:cursor-pointer"
-          style={{
-            backgroundImage: `url(${item.image})`,
-          }}
+          className="relative rounded-4xl overflow-hidden bg-no-repeat bg-cover bg-center min-h-[450px] sm:min-h-[550px] md:min-h-[600px] lg:min-h-[650px] flex items-end cursor-pointer flex-1 [@media(min-width:1024px)_and_(max-width:1100px)]:min-w-[25vw]"
+          style={{ backgroundImage: `url(${item.image})` }}
           variants={cardVariants}
           onClick={() => setActiveIndex(index)}
           animate={{
-            flex: activeIndex === index ? 3 : 1, 
+            flex: activeIndex === index ? 3 : 1,
           }}
           transition={{ duration: 0.6, ease: "easeInOut" }}
         >
@@ -90,61 +88,70 @@ const AlignerSection = () => {
           <div className="absolute inset-0 bg-black/40"></div>
 
           {/* Content */}
-          <div className="flex flex-col xl:flex-row xl:items-end p-6">
-          <div className="relative z-10 text-white justify-end items-start text-left flex flex-col h-full gap-4 md:gap-1">
-            <h3 className="text-3xl font-semibold leading-tight">
+          <div className="relative z-10 flex flex-col p-4 sm:p-6 lg:p-8 w-full text-white">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight font-xxthin">
               {item.title}
-  {activeIndex === index ? " " : (
-    <span className="hidden lg:inline">
-      <br />
-    </span>
-  )}
-              <span className="font-light italic ml-2">{item.subtitle}</span>
+              {activeIndex === index ? " " : (
+                <span className="hidden lg:inline">
+                  <br />
+                </span>
+              )}
+              <span className="font-light libre-baskerville-regular-italic ml-2">{item.subtitle}</span>
             </h3>
 
-                          {activeIndex === index ? (" " ):(<div className="hidden w-full xl:flex justify-end"> <button className="bg-[#c8d7de] text-black rounded-full p-3 hover:bg-[#15161a] hover:text-[#c8d7de] hover:border-white hover:cursor-pointer border-1 border-[#c8d7de] transition-all duration-300"> <FaArrowRightLong /></button> </div>)}
+            {/* Arrow / Small Button */}
+            {activeIndex !== index && (
+              <>
+                <div className="hidden xl:flex justify-end mt-2">
+                  <button className="bg-[#c8d7de] text-black rounded-full p-3 hover:bg-[#15161a] hover:text-[#c8d7de] hover:border-white border border-[#c8d7de] transition-all duration-300 hover:cursor-pointer">
+                    <FaArrowRightLong />
+                  </button>
+                </div>
+                <div className="hidden lg:flex xl:hidden mt-2">
+                  <Button text="Learn more" />
+                </div>
+              </>
+            )}
 
-                          {activeIndex === index ? (" " ):(<div className="xl:hidden hidden w-full lg:flex mt-2"> <Button text='Learn more'/></div>)}
-                          
-                          {/* Mobile / Tablet (always show) */}
-<div className="block lg:hidden">
-  {item.description && <p className="mt-4 text-sm">{item.description}</p>}
-  {item.points && (
-    <ul className="mt-4 text-sm space-y-1">
-      {item.points.map((point, idx) => (
-        <li key={idx} className="flex items-start gap-2">
-          <span className="text-white text-lg">✓</span> {point}
-        </li>
-      ))}
-    </ul>
-  )}
-</div>
+            {/* Mobile / Tablet (always show description + points) */}
+            <div className="block lg:hidden mt-4 text-sm space-y-3">
+              {item.description && <p>{item.description}</p>}
+              {item.points && (
+                <ul className="space-y-1">
+                  {item.points.map((point, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <span className="text-white text-lg">✓</span> {point}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
 
-{/* Desktop (only show for active card) */}
-{activeIndex === index && (
-  <div className="hidden lg:block">
-    {item.description && <p className="mt-4 text-sm">{item.description}</p>}
-    {item.points && (
-      <ul className="mt-4 text-sm space-y-1">
-        {item.points.map((point, idx) => (
-          <li key={idx} className="flex items-start gap-2">
-            <span className="text-white text-lg">✓</span> {point}
-          </li>
-        ))}
-      </ul>
-    )}
-  </div>
-)}
-
-          </div>
+            {/* Desktop (show description only for active card) */}
             {activeIndex === index && (
-              <div className="hidden lg:block">
-              <Button text={item.buttonText || "Learn more"} />
+              <div className="hidden lg:block mt-6 text-sm space-y-3 max-w-md font-xxthin leading-[22px]">
+                {item.description && <p>{item.description}</p>}
+                {item.points && (
+                  <ul className="space-y-1">
+                    {item.points.map((point, idx) => (
+                      <li key={idx} className="flex items-start gap-2 font-xxthin">
+                        <span className="text-white text-lg">✓</span> {point}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </div>
             )}
-             <div className="block lg:hidden mt-2">
-              <Button text={item.buttonText || "Learn more"} />
+
+            {/* Action Button */}
+            {activeIndex === index && (
+              <div className="hidden lg:block mt-6">
+                <Button text={item.buttonText || "Learn more"} />
               </div>
+            )}
+            <div className="block lg:hidden mt-4">
+              <Button text={item.buttonText || "Learn more"} />
+            </div>
           </div>
         </motion.div>
       ))}

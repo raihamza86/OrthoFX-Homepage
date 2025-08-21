@@ -14,7 +14,7 @@ const VideoSection = () => {
         viewport={{ once: true }}
       >
         <motion.div
-          className="relative w-full h-[600px] md:aspect-video overflow-hidden rounded-2xl sm:rounded-[2.5rem] shadow-xl max-w-screen-2xl 2xl:min-w-[80vw] 2xl:max-w-full mx-auto 2xl:h-[70vh] 2xl:aspect-auto"
+          className="relative w-full h-[600px] md:aspect-video overflow-hidden rounded-2xl sm:rounded-[2.5rem] shadow-xl max-w-screen-2xl [@media(min-width:1768px)_and_(max-width:1868px)]:min-w-[99vw] 2xl:min-w-[80vw] 2xl:max-w-full mx-auto 2xl:h-[70vh] 2xl:aspect-auto"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.1 }}
