@@ -89,14 +89,14 @@ const AlignerSection = () => {
 
           {/* Content */}
           <div className="relative z-10 flex flex-col p-4 sm:p-6 lg:p-8 w-full text-white">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight font-xxthin">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight tk-neue-haas-grotesk-display">
               {item.title}
               {activeIndex === index ? " " : (
                 <span className="hidden lg:inline">
                   <br />
                 </span>
               )}
-              <span className="font-light libre-baskerville-regular-italic ml-2">{item.subtitle}</span>
+              <span className="font-light tk-baskerville-display-pt italic ml-2">{item.subtitle}</span>
             </h3>
 
             {/* Arrow / Small Button */}
@@ -129,12 +129,12 @@ const AlignerSection = () => {
 
             {/* Desktop (show description only for active card) */}
             {activeIndex === index && (
-              <div className="hidden lg:block mt-6 text-sm space-y-3 max-w-md font-xxthin leading-[22px]">
+              <div className="hidden lg:block mt-6 text-sm space-y-3 max-w-md tk-neue-haas-grotesk-display leading-[22px]">
                 {item.description && <p>{item.description}</p>}
                 {item.points && (
                   <ul className="space-y-1">
                     {item.points.map((point, idx) => (
-                      <li key={idx} className="flex items-start gap-2 font-xxthin">
+                      <li key={idx} className="flex items-start gap-2 tk-neue-haas-grotesk-display">
                         <span className="text-white text-lg">✓</span> {point}
                       </li>
                     ))}

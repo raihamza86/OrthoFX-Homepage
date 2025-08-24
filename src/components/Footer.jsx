@@ -61,7 +61,7 @@ const Footer = () => (
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <h3 className="libre-baskerville-regular-italic text-lg mb-4 text-[#d9edf7] text-[20px] leading-[24px]">
+        <h3 className="tk-baskerville-display-pt italic text-lg mb-4 text-[#d9edf7] text-[20px] leading-[24px]">
           Company
         </h3>
         <ul className="space-y-2 text-sm">
@@ -78,7 +78,7 @@ const Footer = () => (
             >
               <a
                 href="#"
-                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px] leading-[22px] text-nowrap"
+                className="tk-neue-haas-grotesk-display hover:cursor-pointer text-[#d9edf7] text-[16px] leading-[22px] text-nowrap"
               >
                 {link}
               </a>
@@ -95,7 +95,7 @@ const Footer = () => (
         whileInView="visible"
         viewport={{ once: true }}
       >
-        <h3 className="text-lg mb-4 text-[#d9edf7] text-[20px] libre-baskerville-regular-italic leading-[24px]">
+        <h3 className="text-lg mb-4 text-[#d9edf7] text-[20px] tk-baskerville-display-pt italic leading-[24px]">
           Products
         </h3>
         <ul className="space-y-2 text-sm">
@@ -112,7 +112,7 @@ const Footer = () => (
             >
               <a
                 href="#"
-                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px] leading-[22px] text-nowrap"
+                className="tk-neue-haas-grotesk-display hover:cursor-pointer text-[#d9edf7] text-[16px] leading-[22px] text-nowrap"
               >
                 {link}
               </a>
@@ -130,7 +130,7 @@ const Footer = () => (
         viewport={{ once: true }}
         className="mt-[-9rem] md:mt-[-10rem] lg:mt-0"
       >
-        <h3 className="font-xxthin text-lg mb-4 text-[#d9edf7] text-[20px] libre-baskerville-regular-italic leading-[24px]">
+        <h3 className="tk-neue-haas-grotesk-display text-lg mb-4 text-[#d9edf7] text-[20px] tk-baskerville-display-pt italic leading-[24px]">
           Resources
         </h3>
         <ul className="space-y-2 text-sm">
@@ -147,7 +147,7 @@ const Footer = () => (
             >
               <a
                 href="#"
-                className="font-xxthin hover:cursor-pointer text-[#d9edf7] text-[16px] leading-[22px] text-nowrap"
+                className="tk-neue-haas-grotesk-display hover:cursor-pointer text-[#d9edf7] text-[16px] leading-[22px] text-nowrap"
               >
                 {link}
               </a>

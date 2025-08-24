@@ -43,15 +43,19 @@ const Hero = () => {
         {/* Content */}
         <div className="relative z-10 flex flex-col md:items-center justify-between gap-52 md:gap-40 lg:gap-28 xl:gap-80">
           {/* Left Content */}
-          <motion.div className="flex-1" variants={fadeUp}>
+          <motion.div className="flex-1 flex flex-col gap-0 box-border self-start lg:justify-start" variants={fadeUp}>
+
             <motion.h1
-              className="font-xxthin text-[40px] md:text-[60px] lg:text-[70px] text-[#15161a] leading-tight"
+              className="tk-neue-haas-grotesk-display text-[40px] leading-[40px]  xl:text-[96px] text-[#15161a] xl:leading-[96px]"
               variants={fadeUp}
             >
-              Be you. <br />{" "}
-              <span className="libre-baskerville-regular-italic text-[40px] md:text-[40px] lg:text-[50px]">
+              Be you.
+            </motion.h1>
+            <motion.h1
+className="tk-baskerville-display-pt text-[46px] leading-[44px] md:text-[40px] lg:text-[70px] lg:leading-[70px] italic"
+              variants={fadeUp}
+            >
                 Smile confidently.
-              </span>
             </motion.h1>
             
            
@@ -61,7 +65,7 @@ const Hero = () => {
            <div className="flex flex-row-reverse gap-4 lg:self-end">
             <div>
             <motion.p
-              className="mt-6 text-[18px] text-white leading-[25px] font-xxthin max-w-xl lg:max-w-sm"
+              className="mt-6 text-[18px] text-white leading-[25px] tk-neue-haas-grotesk-display max-w-xl lg:max-w-sm"
               variants={fadeUp}
               transition={{ delay: 0.3 }}
             >

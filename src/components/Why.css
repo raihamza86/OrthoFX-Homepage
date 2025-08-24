@@ -1,0 +1,87 @@
+.carousel {
+    display: none;
+}
+
+/* Show only on screens 1902px */
+@media (min-width: 1902px) {
+    .carousel {
+        display: block;
+        background: #15161a;
+        height: 400vh;
+    }
+}
+
+.scrolling-heading-wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+
+
+.contentContainer {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 0 1rem;
+}
+
+/* --- Slides Wrapper --- */
+.images {
+    display: flex;
+    gap: 20vw;
+    padding: 0 3rem;
+}
+
+/* Spacing inside group */
+.slide-group {
+    display: flex;
+    gap: 3vw;
+}
+
+/* Slide Block */
+.slide {
+    flex: 0 0 40vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.slide-heading {
+    font-size: clamp(1.25rem, 2vw, 2rem);
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-transform: capitalize;
+    color: #f5f5f5;
+}
+
+.slide img {
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    object-fit: cover;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.slide img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+/* Images inside a slide */
+.slide-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.slide-row img {
+    flex: 1;
+    max-height: 450px;
+}
+
+.slide-top {
+    margin-top: 9.4rem;
+}

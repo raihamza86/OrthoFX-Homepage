@@ -40,7 +40,7 @@ const VideoSection = () => {
           {/* Text + Buttons */}
           <div className="absolute inset-0 flex flex-col justify-between xl:justify-start items-start gap-6 p-6 sm:p-10 z-20 text-white">
             <motion.h1
-              className="text-3xl md:text-[40px] font-xxthin leading-snug drop-shadow-lg"
+              className="text-3xl md:text-[40px] tk-neue-haas-grotesk-display leading-snug drop-shadow-lg"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
@@ -89,7 +89,7 @@ const VideoSection = () => {
 
       {/* Disclaimer */}
       <motion.div
-        className=" max-w-screen-lg font-xxthin my-8"
+        className=" max-w-screen-lg tk-neue-haas-grotesk-display my-8"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}

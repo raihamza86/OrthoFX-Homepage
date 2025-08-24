@@ -121,11 +121,11 @@ const handleKey = (e) => {
         transition={{ duration: 0.8, ease: "easeOut" }}
         viewport={{ once: true, amount: 0.2 }}
       >
-        <h1 className="text-white flex items-center gap-2 libre-baskerville-regular-italic text-[18px] sm:text-[20px]">
+        <h1 className="text-white flex items-center gap-2 tk-baskerville-display-pt italic text-[18px] sm:text-[20px]">
           <div className="bg-white w-8 sm:w-12 md:w-20 h-[1px] rounded-4xl"></div> How it works
         </h1>
-        <h2 className="text-[30px] leading-[40px] 2xl:leading-[70px] sm:text-[28px] md:text-[40px] lg:text-[45px] 2xl:text-[50px] font-xxthin mb-4">
-          3 easy steps <span className="libre-baskerville-regular-italic font-light">to a confident smile</span>
+        <h2 className="text-[30px] leading-[40px] 2xl:leading-[70px] sm:text-[28px] md:text-[40px] lg:text-[45px] 2xl:text-[50px] tk-neue-haas-grotesk-display mb-4">
+          3 easy steps <span className="tk-baskerville-display-pt italic font-light">to a confident smile</span>
         </h2>
         <Button text="Find a doctor" />
       </motion.div>
@@ -153,10 +153,10 @@ const handleKey = (e) => {
               className="bg-[#c8d7de] min-w-[60vw] min-h-[60vw] max-h-[60vw] md:max-w-[300px] md:min-w-[300px] md:min-h-[300px] md:max-h-[300px] lg:min-h-[300px] lg:max-h-[300px] xl:min-w-[400px] p-4 md:p-6 lg:p-8 rounded-3xl shadow-md flex flex-col gap-2 justify-center snap-center"
               variants={cardVariants}
             >
-              <p className="libre-baskerville-regular-italic text-[#15161a] text-[16px] sm:text-[18px] md:text-[20px] xl:leading-[24px]">
+              <p className="tk-baskerville-display-pt italic text-[#15161a] text-[16px] sm:text-[18px] md:text-[20px] xl:leading-[24px]">
                 {step.step}
               </p>
-              <h3 className="text-[#15161a] text-[18px] md:text-[22px] xl:text-[32px] xl:leading-[38px] font-xxthin leading-[20px] lg:leading-[24px]">
+              <h3 className="text-[#15161a] text-[18px] md:text-[22px] xl:text-[32px] xl:leading-[38px] tk-neue-haas-grotesk-display leading-[20px] lg:leading-[24px]">
                 {step.title}
               </h3>
               <p className="mt-2 text-[#15161a] text-[14px] md:text-[14px] leading-[20px] xl:leading-[25px] xl:text-[18px]">

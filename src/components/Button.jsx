@@ -8,7 +8,7 @@ const Button = ({text, bg = "#f0f0f0", txt = "#000000", border= "#fff"}) => {
   <span className="absolute top-0 bottom-0 right-0 w-12 h-full bg-[#c8d7de] rounded-full group-hover:w-full transition-all duration-500 ease-in-out z-0"></span>
 
   {/* Content (text + icon) */}
-  <span className="relative z-10 flex items-center gap-6 font-xxthin transition-colors duration-300 group-hover:text-black">
+  <span className="relative z-10 flex items-center gap-6 tk-neue-haas-grotesk-display transition-colors duration-300 group-hover:text-black">
     {text}
     <FaArrowRightLong className="text-black mr-[-10px]"/>
   </span>

@@ -22,12 +22,12 @@ const Aligned = () => {
         {/* Responsive Heading */}
         <motion.h2 
           className="leading-tight sm:leading-[60px] md:leading-[72px] lg:leading-[84px] xl:leading-[96px] 
-                     font-xxthin text-[#d9edf7] 
+                     tk-neue-haas-grotesk-display text-[#d9edf7] 
                      text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[96px]"
           variants={fadeUp}
         >
           Aligned <br />
-          <span className="libre-baskerville-regular-italic">to your lifestyle</span>
+          <span className="tk-baskerville-display-pt italic">to your lifestyle</span>
         </motion.h2>
 
         {/* Button aligned responsively */}

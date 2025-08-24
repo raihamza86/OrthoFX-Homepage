@@ -71,10 +71,10 @@ const TestimonialSlider = () => {
     <section className="bg-[#121418] text-white py-16 px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-[16%] flex flex-col lg:flex-row lg:items-start justify-between gap-6 lg:gap-0">
       {/* Left Title */}
       <div className="">
-        <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic text-nowrap text-[20px]">
+        <h1 className="text-[#d9edf7] flex items-center gap-2 tk-baskerville-display-pt italic text-nowrap text-[20px]">
           <div className="bg-white md:w-20 w-8 h-[1px] rounded-4xl"></div> Customer testimonials
         </h1>
-        <h2 className="text-[20px] text-[#d9edf7] font-xxthin leading-[40px] md:text-[40px] 2xl:text-[64px] 2xl:leading-[70px] text-left mt-2">
+        <h2 className="text-[20px] text-[#d9edf7] tk-neue-haas-grotesk-display leading-[40px] md:text-[40px] 2xl:text-[64px] 2xl:leading-[70px] text-left mt-2">
           Real people <br /> real results
         </h2>
       </div>
@@ -91,7 +91,7 @@ const TestimonialSlider = () => {
             <IoIosArrowBack size={20} />
           </motion.button>
 
-          <span className="text-[#d9edf7] libre-baskerville-regular-italic text-lg">
+          <span className="text-[#d9edf7] tk-baskerville-display-pt italic text-lg">
             {index + 1} / {testimonials.length}
           </span>
 
@@ -116,7 +116,7 @@ const TestimonialSlider = () => {
     exit="exit"
     transition={{ duration: 0.5 }}
     layout
-    className="text-xl md:text-2xl font-xxthin leading-[30px] text-[#d9edf7] max-w-2xl mt-4 2xl:text-[28px] lg:w-[430px] xl:w-[630px] 2xl:w-[450px] lg:self-end"
+    className="text-xl md:text-2xl tk-neue-haas-grotesk-display leading-[30px] text-[#d9edf7] max-w-2xl mt-4 2xl:text-[28px] lg:w-[430px] xl:w-[630px] 2xl:w-[450px] lg:self-end"
   >
    <span className="flex items-start gap-2">
       {/* Fixed icon size */}

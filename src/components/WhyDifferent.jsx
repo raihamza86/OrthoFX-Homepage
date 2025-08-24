@@ -29,22 +29,22 @@ const WhyDifferent = () => {
     >
       {/* Title */}
       <motion.h2
-        className="text-[#c8d7de] text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-xxthin leading-snug"
+        className="text-[#c8d7de] text-3xl sm:text-5xl md:text-6xl lg:text-7xl tk-neue-haas-grotesk-display leading-snug"
         variants={fadeUp}
       >
         Why are we{' '}
-        <span className="libre-baskerville-regular-italic">different?</span>
+        <span className="tk-baskerville-display-pt italic">different?</span>
       </motion.h2>
 
       {/* Section 01 */}
       <motion.div className="flex flex-col gap-5 mt-6" variants={fadeUp}>
-        <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic text-base sm:text-lg md:text-xl">
+        <h1 className="text-[#d9edf7] flex items-center gap-2 tk-baskerville-display-pt italic text-base sm:text-lg md:text-xl">
           <div className="bg-white w-16 sm:w-20 h-[2px] rounded-4xl"></div> 01
         </h1>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#d9edf7] font-xxthin">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#d9edf7] tk-neue-haas-grotesk-display">
           Comfort meets <br /> efficiency
         </h2>
-        <p className="text-base sm:text-lg text-[#c8d7de] font-xxthin leading-relaxed max-w-3xl">
+        <p className="text-base sm:text-lg text-[#c8d7de] tk-neue-haas-grotesk-display leading-relaxed max-w-3xl">
           Our aligners apply optimal force with a gentle, consistent touch.
           While traditional aligners may use up to 8.4x more force, ours deliver
           precise control for a more comfortable experience.**
@@ -59,13 +59,13 @@ const WhyDifferent = () => {
 
       {/* Section 02 */}
       <motion.div className="flex flex-col gap-5 mt-12" variants={fadeUp}>
-        <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic text-base sm:text-lg md:text-xl">
+        <h1 className="text-[#d9edf7] flex items-center gap-2 tk-baskerville-display-pt italic text-base sm:text-lg md:text-xl">
           <div className="bg-white w-16 sm:w-20 h-[2px] rounded-4xl"></div> 02
         </h1>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#d9edf7] font-xxthin">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl text-[#d9edf7] tk-neue-haas-grotesk-display">
           AirFlex™ aligners, <br /> advanced material
         </h2>
-        <p className="text-base sm:text-lg text-[#c8d7de] font-xxthin leading-relaxed max-w-3xl">
+        <p className="text-base sm:text-lg text-[#c8d7de] tk-neue-haas-grotesk-display leading-relaxed max-w-3xl">
           AirFlex™ is the new generation of clear aligners, featuring patented
           HyperElastic™ polymer for sustained optimal force delivery. It
           supports natural bone remodeling and reduces daytime relapse when not

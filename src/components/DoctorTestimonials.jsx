@@ -86,11 +86,11 @@ const DoctorTestimonials = () => {
     <section className="bg-[#121418] text-white py-16  relative overflow-hidden">
       {/* Header */}
       <div className="flex flex-col gap-4 mb-6 px-6 md:px-12 lg:px-20 xl:px-28 2xl:px-[16%]">
-        <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic text-[20px]">
+        <h1 className="text-[#d9edf7] flex items-center gap-2 tk-baskerville-display-pt italic text-[20px]">
           <div className="bg-white md:w-20 w-8 h-[1px] rounded-4xl"></div>{" "}
           Doctor testimonials
         </h1>
-        <h2 className="text-[20px] md:text-[40px] text-[#d9edf7] font-xxthin">
+        <h2 className="text-[20px] md:text-[40px] text-[#d9edf7] tk-neue-haas-grotesk-display">
           Trusted by experts
         </h2>
         <div>
@@ -141,7 +141,7 @@ const DoctorTestimonials = () => {
       >
         <div>
         <div className="md:text-xl text-[#15161A] md:mb-4"><FaQuoteLeft/></div>
-        <p className="text-[17px] md:text-[18px] font-xxthin mb-6 text-[#15161A]">
+        <p className="text-[17px] md:text-[18px] tk-neue-haas-grotesk-display mb-6 text-[#15161A]">
           {item.quote}
         </p>
         </div>

@@ -1,316 +1,108 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Button from "./Button";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
-};
-
-const headings = [
-  "Why are we different?",
-  "Why are we different?",
-];
-
-
-const headingVariants = {
-  hidden: { opacity: 0, x: 100 },
-  enter: { opacity: 1, x: 0, transition: { duration: 0.6 } },
-  exit: { opacity: 0, x: -100, transition: { duration: 0.6 } }
-};
-
-
+import ScrollingHeading from "./ScrollingHeading";
 
 const WhyDifferentTwo = () => {
-  const containerRef = useRef(null);
-  const componentRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
-  const [isComponentActive, setIsComponentActive] = useState(false);
-  const totalSections = 2;
+  const sectionRef = useRef(null);
 
-   // Calculate section width including margins
-  const sectionWidth = useRef(0);
-  useEffect(() => {
-    if (containerRef.current) {
-      sectionWidth.current = containerRef.current.offsetWidth + 20 * 16; // 20rem in pixels
-    }
-  }, []);
-
-   // track horizontal scroll progress (0 → 1)
-  const { scrollXProgress } = useScroll({
-    container: containerRef
+  // Track vertical scroll within this section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
   });
 
-  // Transform scroll progress to heading position
-  const x = useTransform(
-    scrollXProgress,
-    [0, 1],
-    [0, -sectionWidth.current * (headings.length - 1)]
-  );
-
-
-
-
-  // Enhanced visibility tracking with multiple thresholds
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Activate when at least 90% visible, deactivate when less than 10% visible
-        setIsComponentActive(entry.intersectionRatio >= 0.9);
-      },
-      {
-        threshold: [0, 0.1, 0.9, 1],
-        rootMargin: "0px 0px -100px 0px" // 100px bottom margin to trigger earlier
-      }
-    );
-
-    if (componentRef.current) {
-      observer.observe(componentRef.current);
-    }
-
-    return () => {
-      if (componentRef.current) {
-        observer.unobserve(componentRef.current);
-      }
-    };
-  }, []);
-
-  // Scroll to active section with improved timing
-const scrollToSection = (index) => {
-  if (!containerRef.current || isScrolling) return;
-
-  setIsScrolling(true);
-  setActiveIndex(index);
-
-  const container = containerRef.current;
-  const target = container.offsetWidth * index;
-  const start = container.scrollLeft;
-  const distance = target - start;
-  const duration = 1000; // 👈 slow scroll (adjust speed)
-
-  let startTime = null;
-
-  const animate = (time) => {
-    if (!startTime) startTime = time;
-    const progress = Math.min((time - startTime) / duration, 1);
-
-    // Ease in-out cubic
-    const ease = progress < 0.5
-      ? 4 * progress * progress * progress
-      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-    container.scrollLeft = start + distance * ease;
-
-    if (progress < 1) {
-      requestAnimationFrame(animate);
-    } else {
-      setIsScrolling(false);
-    }
-  };
-
-  requestAnimationFrame(animate);
-};
-
-
-
-  // Enhanced wheel handling with edge detection
-useEffect(() => {
-  const handleWheel = (e) => {
-    if (!isComponentActive) return;
-
-    if (isScrolling) {
-      e.preventDefault(); // block while animating
-      return;
-    }
-
-    const atFirst = activeIndex === 0;
-    const atLast = activeIndex === totalSections - 1;
-
-    if (e.deltaY > 0 && !atLast) {
-      // scroll forward inside component
-      e.preventDefault();
-      scrollToSection(activeIndex + 1);
-    } else if (e.deltaY < 0 && !atFirst) {
-      // scroll backward inside component
-      e.preventDefault();
-      scrollToSection(activeIndex - 1);
-    } else {
-      // ✅ at edges → do NOT preventDefault → let page scroll
-    }
-  };
-
-  window.addEventListener("wheel", handleWheel, { passive: false });
-  return () => window.removeEventListener("wheel", handleWheel);
-}, [activeIndex, isScrolling, isComponentActive]);
-
-
-
-
-useEffect(() => {
-  const handleKey = (e) => {
-    if (!isComponentActive) return;
-    if (isScrolling) return;
-
-    const atFirst = activeIndex === 0;
-    const atLast = activeIndex === totalSections - 1;
-
-    // scrolling forward keys
-    if (["ArrowDown", "PageDown", " "].includes(e.key)) {
-      if (!atLast) {
-        e.preventDefault();
-        scrollToSection(activeIndex + 1);
-      }
-    }
-
-    // scrolling backward keys
-    if (["ArrowUp", "PageUp"].includes(e.key)) {
-      if (!atFirst) {
-        e.preventDefault();
-        scrollToSection(activeIndex - 1);
-      }
-    }
-
-    if (e.key === "Home" && !atFirst) {
-      e.preventDefault();
-      scrollToSection(0);
-    }
-
-    if (e.key === "End" && !atLast) {
-      e.preventDefault();
-      scrollToSection(totalSections - 1);
-    }
-  };
-
-  window.addEventListener("keydown", handleKey, { passive: false, capture: true });
-  return () => window.removeEventListener("keydown", handleKey, { capture: true });
-}, [activeIndex, isScrolling, isComponentActive]);
-
-
+  // Horizontal movement:
+  // 0 → 0.5 = Section 1 fully visible
+  // 0.5 → 1 = Section 2 fully visible
+  const x = useTransform(scrollYProgress, [0, 1], ["10%", "-36%"]);
 
   return (
-    <motion.div 
-      ref={componentRef}
-      className="relative my-4 snap-start snap-always hidden [@media(min-width:1902px)]:block"
-      style={{ scrollSnapAlign: 'start' }}
-    >
-
-      {/* Headings container */}
-      <div className="overflow-hidden h-[120px] relative">
+    <div className="mt-8 hidden [@media(min-width:1902px)]:block">
+    <ScrollingHeading />
+    // Outer section needs 200vh so we have space to scroll between 2 screens
+    <section ref={sectionRef} className="relative h-[120vh] flex items-center bg-[#15161a]">
+      {/* Sticky wrapper fills 1 screen */}
+      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+        {/* Horizontal scroll content */}
         <motion.div
-          className="flex absolute top-0 left-0"
-          style={{ 
-            x,
-            width: `${sectionWidth.current * headings.length}px`
-          }}
+          style={{ x }}
+          className="flex w-[200%] h-full"
         >
-          {headings.map((text, i) => {
-  const words = text.split(" ");
-  const lastWord = words.pop(); // take last word
-  const rest = words.join(" ");
-
-  return (
-
-            <h2
-              key={i}
-              className="text-[#c8d7de] text-[96px] whitespace-nowrap font-xxthin"
-              style={{ width: `${sectionWidth.current}px` }}
-            >
-      {rest}{" "}
-      <span className="libre-baskerville-regular-italic">
-        {lastWord}
-      </span>
-            </h2>)
-          })}
-        </motion.div>
-      </div>
-
-      {/* Horizontal Scroll Container */}
-      <div
-        ref={containerRef}
-        className="w-full flex overflow-hidden snap-x snap-mandatory scrollbar-hide"
-                style={{ 
-          scrollBehavior: 'smooth',
-          scrollSnapType: 'x mandatory'
-        }}
-      >
-        {/* Section 01 - with increased right margin */}
-        <div className="min-w-full flex gap-8 p-6 snap-start mr-[10rem]" style={{ scrollSnapAlign: 'start' }}>
-          <div className="flex flex-col gap-5 w-1/2">
-            <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic">
-              <div className="bg-[#d9edf7] w-20 h-[2px] rounded-4xl"></div> 01
-            </h1>
-            <h2 className="text-[56px] text-[#C8D7DE] font-xxthin">
-              Comfort meets <br /> efficiency
-            </h2>
-            <div className="h-[300px] w-full">
+          {/* Section 1 */}
+          <div className="w-full flex gap-8 p-6">
+            <div className="flex flex-col gap-5 w-1/2">
+        <h1 className="text-[#d9edf7] flex items-center gap-2 tk-baskerville-display-pt italic text-base sm:text-lg md:text-xl">
+          <div className="bg-[#6d6e70] w-16 sm:w-20 h-[2px] rounded-4xl"></div> 01
+        </h1>
+              <h2 className="text-[56px] text-[#C8D7DE] tk-neue-haas-grotesk-display">
+                Comfort meets <br /> efficiency
+              </h2>
               <motion.img
-                className="rounded-2xl h-full w-full object-cover"
+                className="rounded-2xl h-[300px] w-full object-cover"
                 src="/trusted-3.jpg"
                 alt="not found"
-                variants={fadeUp}
               />
             </div>
-          </div>
-          <div className="flex flex-col gap-5 w-1/2 mt-[9rem]">
-            <h2 className="text-[22px] text-[#C8D7DE] font-xxthin">
-              Our aligners apply optimal force with a gentle, consistent touch. While traditional aligners may use up to 8.4x more force, ours deliver precise control for a more comfortable experience.**
-            </h2>
-            <div className="flex gap-4 w-full h-[300px]">
-              <motion.img
-                className="rounded-2xl w-1/2 h-full object-cover"
-                src="/trusted-3-1.png"
-                alt="not found"
-              />
-              <motion.img
-                className="rounded-2xl w-1/2 h-full object-cover"
-                src="/trusted-3-2.jpg"
-                alt="not found"
-              />
+            <div className="flex flex-col gap-5 w-1/2 mt-[7rem]">
+              <h2 className="text-[22px] text-[#C8D7DE] tk-neue-haas-grotesk-display">
+Our aligners apply optimal force with a gentle, consistent touch. While traditional aligners may use up to 8.4x more force, ours deliver precise control for a more comfortable experience.**
+              </h2>
+              <div className="flex gap-4 w-full h-[300px]">
+                <motion.img
+                  className="rounded-2xl w-1/2 h-full object-cover"
+                  src="/trusted-3-1.png"
+                  alt="not found"
+                />
+                <motion.img
+                  className="rounded-2xl w-1/2 h-full object-cover"
+                  src="/trusted-3-2.jpg"
+                  alt="not found"
+                />
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Section 02 - with increased left margin */}
-        <div className="min-w-full flex gap-8 p-6 snap-start ml-[10rem]" style={{ scrollSnapAlign: 'start' }}>
-          <div className="flex flex-col gap-5 w-1/2">
-            <h1 className="text-[#d9edf7] flex items-center gap-2 libre-baskerville-regular-italic">
-              <div className="bg-[#d9edf7] w-20 h-[2px] rounded-4xl"></div> 02
-            </h1>
-            <h2 className="text-[32px] text-[#C8D7DE] font-xxthin">
-              AirFlex™ aligners, <br /> advanced material
-            </h2>
-            <div>
+          {/* Section 2 */}
+          <div className="w-full flex gap-8 p-6">
+            <div className="flex flex-col gap-5 w-1/2">
+        <h1 className="text-[#d9edf7] flex items-center gap-2 tk-baskerville-display-pt italic text-base sm:text-lg md:text-xl">
+          <div className="bg-[#6d6e70] w-16 sm:w-20 h-[2px] rounded-4xl"></div> 02
+        </h1>
+              <h2 className="text-[32px] text-[#C8D7DE] tk-neue-haas-grotesk-display">
+                AirFlex™ aligners, <br /> advanced material
+              </h2>
+              <div>
               <Button text="OrthoFX Difference" bg="#292930" txt="#fff" border="#292930"/>
-            </div>
-            <div className="h-[300px] w-full">
+              </div>
               <motion.img
-                className="rounded-2xl h-full w-full object-cover"
+                className="rounded-2xl h-[300px] w-full object-cover"
                 src="/trusted-4.jpg"
                 alt="not found"
               />
             </div>
-          </div>
-          <div className="flex flex-col gap-5 w-1/2 mt-[10rem]">
-            <p className="text-[18px] text-[#c8d7de] font-xxthin">
-              AirFlex™ is the new generation of clear aligners, featuring patented HyperElastic™ polymer for sustained optimal force delivery. It supports natural bone remodeling and reduces daytime relapse when not wearing aligners.**
-            </p>
-            <div className="flex gap-4 w-full h-[300px]">
-              <motion.img
-                className="rounded-2xl w-1/2 h-full object-cover"
-                src="/trusted-4-1.jpg"
-                alt="not found"
-              />
-              <motion.img
-                className="rounded-2xl w-1/2 h-full object-cover"
-                src="/trusted-4-2.png"
-                alt="not found"
-              />
+            <div className="flex flex-col gap-5 w-1/2 mt-[9rem]">
+              <p className="text-[18px] text-[#c8d7de] tk-neue-haas-grotesk-display">
+AirFlex™ is the new generation of clear aligners, featuring patented HyperElastic™ polymer for sustained optimal force delivery. It supports natural bone remodeling and reduces daytime relapse when not wearing aligners.**
+              </p>
+              <div className="flex gap-4 w-full h-[300px]">
+                <motion.img
+                  className="rounded-2xl w-1/2 h-full object-cover"
+                  src="/trusted-4-1.jpg"
+                  alt="not found"
+                />
+                <motion.img
+                  className="rounded-2xl w-1/2 h-full object-cover"
+                  src="/trusted-4-2.png"
+                  alt="not found"
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </motion.div>
+    </section>
+    </div>
   );
 };
 

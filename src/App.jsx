@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Hero from "./components/Hero";
 import Trusted from "./components/Trusted";
 import HowItWorks from "./components/HowItWorks";
@@ -9,8 +9,9 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 function App() {
+
   return (
-    <div className="font-grotesk bg-[#15161a] overflow-hidden">
+    <div className="tk-neue-haas-grotesk-display bg-[#15161a]">
       <Navbar />
       <Hero />
       <Trusted />

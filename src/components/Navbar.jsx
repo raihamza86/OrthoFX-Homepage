@@ -122,7 +122,7 @@ const Navbar = () => {
                 isScrolled === "black"
                   ? "text-white hover:bg-[#38393c]"
                   : "text-[#15161a] hover:bg-[#d9edf7]"
-              } rounded-full px-3 py-2 transition-all duration-300 font-xxthin`}
+              } rounded-full px-3 py-2 transition-all duration-300 tk-neue-haas-grotesk-display`}
             >
               {navItems[0].label}
             </button>
@@ -135,7 +135,7 @@ const Navbar = () => {
                   isScrolled === "black"
                     ? "text-white hover:bg-[#38393c]"
                     : "text-[#15161a] hover:bg-[#d9edf7]"
-                } flex items-center gap-1 rounded-full px-3 py-2 transition-all duration-300 font-xxthin`}
+                } flex items-center gap-1 rounded-full px-3 py-2 transition-all duration-300 tk-neue-haas-grotesk-display`}
               >
                 Products{" "}
                 {openDropdown === "products" ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -176,7 +176,7 @@ const Navbar = () => {
                   isScrolled === "black"
                     ? "text-white hover:bg-[#38393c]"
                     : "text-[#15161a] hover:bg-[#d9edf7]"
-                } flex items-center gap-1 rounded-full px-3 py-2 transition-all duration-300 font-xxthin`}
+                } flex items-center gap-1 rounded-full px-3 py-2 transition-all duration-300 tk-neue-haas-grotesk-display`}
               >
                 Services{" "}
                 {openDropdown === "services" ? <IoIosArrowUp /> : <IoIosArrowDown />}
@@ -206,7 +206,7 @@ const Navbar = () => {
                   isScrolled === "black"
                     ? "text-white hover:bg-[#38393c]"
                     : "text-[#15161a] hover:bg-[#d9edf7]"
-                } rounded-full px-3 py-2 transition-all duration-300 font-xxthin`}
+                } rounded-full px-3 py-2 transition-all duration-300 tk-neue-haas-grotesk-display`}
               >
                 {item.label}
               </button>
@@ -215,7 +215,7 @@ const Navbar = () => {
 
           {/* Right Buttons (Desktop) */}
           <div className="hidden xl:flex items-center space-x-4 ml-auto [@media(min-width:1440px)_and_(max-width:1530px)]:mr-[-2%]">
-            <button className="bg-[#292930] text-white py-2 px-4 rounded-full hover:bg-white hover:text-black transition font-xxthin">
+            <button className="bg-[#292930] text-white py-2 px-4 rounded-full hover:bg-white hover:text-black transition tk-neue-haas-grotesk-display">
               Become a provider
             </button>
             <div className="relative">
@@ -232,7 +232,7 @@ const Navbar = () => {
                       key={i}
                       className="block w-full text-center px-2 py-2 hover:bg-[#292930] transition"
                     >
-                      <p className="text-white text-[14px] md:text-[16px] font-xxthin">
+                      <p className="text-white text-[14px] md:text-[16px] tk-neue-haas-grotesk-display">
                         {item}
                       </p>
                     </button>
@@ -270,7 +270,7 @@ const Navbar = () => {
             <div className="flex justify-end">
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="text-white flex items-center py-4 px-6 gap-2 font-xxthin"
+                className="text-white flex items-center py-4 px-6 gap-2 tk-neue-haas-grotesk-display"
               >
                 <FiX size={20} /> <p className="text-[#d9edf7]">Close</p>
               </button>
@@ -281,7 +281,7 @@ const Navbar = () => {
               {navItems.map((item) => (
                 <button
                   key={item.label}
-                  className="text-[#d9edf7] text-left text-[18px] font-xxthin"
+                  className="text-[#d9edf7] text-left text-[18px] tk-neue-haas-grotesk-display"
                 >
                   {item.label}
                 </button>
@@ -317,12 +317,12 @@ const Navbar = () => {
 
             {/* Bottom Buttons */}
             <div className="flex items-center justify-between bg-[#38393c] p-4">
-              <button className="bg-[#292930] text-[14px] md:text-[16px] text-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition font-xxthin">
+              <button className="bg-[#292930] text-[14px] md:text-[16px] text-white px-4 py-2 rounded-full hover:bg-white hover:text-black transition tk-neue-haas-grotesk-display">
                 Become a provider
               </button>
               <button className="group relative overflow-hidden px-4 py-2 rounded-full bg-[#f0f0f0] text-black text-[14px] md:text-[16px] flex items-center gap-2 transition">
                 <span className="absolute inset-0 bg-[#c8d7de] w-0 group-hover:w-full transition-all duration-500"></span>
-                <span className="relative z-10 flex items-center gap-2 group-hover:text-black font-xxthin">
+                <span className="relative z-10 flex items-center gap-2 group-hover:text-black tk-neue-haas-grotesk-display">
                   Find a doctor
                   <FaArrowRightLong />
                 </span>
